@@ -1,7 +1,7 @@
 @extends('treasury.treasury')
 
 @section('form')
-	LE FALTA
+	
 	<div class="row">
 		<div class="large-12 columns large-centered">
 	

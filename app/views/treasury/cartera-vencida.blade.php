@@ -1,7 +1,7 @@
 @extends('treasury.treasury')
 
 @section('form')
-	LE FALTA
+	
 	<div class="row">
 		<div class="large-12 columns large-centered">
 	
@@ -46,18 +46,54 @@
 			      </label>
 			    </div>
 			    <div class="large-6 columns">
-			      <label>Porcentaje de Crédito
-			        <input type="text" name="porcentaje" placeholder="Porcentaje de Crédito" />
+			      <label>Fecha de vencimiento
+			      	<input type="date" name="fecha" placeholder="Fecha de pago" />
 			      </label>
 			    </div>
 			  </div>
 
 			  <div class="row">
 			    <div class="large-12 columns">
-			      <label>Fecha de pago
-			        <input type="date" name="fecha" placeholder="Fecha de pago" />
+			      <label>Observaciones
+			        <textarea name="observaciones" id="" cols="30" rows="3"></textarea>
 			      </label>
 			    </div>
+			  </div>
+			  <div class="row">
+			    <div class="large-12 columns">
+			      <label>Cantidad
+			        <input type="text" name="cantidad" placeholder="Cantidad" />
+			      </label>
+			    </div>
+			  </div>
+
+			  <div class="row">
+			  	<div class="large-12 columns">
+
+					<table class="responsive">
+						<tr>
+							<th>Descripción</th>
+							<th>Cuenta</th>
+							<th>Monto</th>
+							<th>Periodo</th>
+							<th>Fecha de vencida</th>
+						</tr>
+						<tr>
+							<td>Primer Pago Curso Ingles TOEIC</td>
+							<td>143</td>
+							<td>698</td>
+							<td>698</td>
+							<td>698</td>
+						</tr>
+						<tr>
+							<td>Primer Pago Curso Ingles TOEIC</td>
+							<td>143</td>
+							<td>698</td>
+							<td>698</td>
+							<td>698</td>
+						</tr>
+					</table>
+			  	</div>
 			  </div>
 
 			  <div class="row">

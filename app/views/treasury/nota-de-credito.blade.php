@@ -33,6 +33,13 @@
 			    </div>
 			  </div>
 
+			  <div class="row">
+			    <div class="large-12 columns">
+			      <label>Descripción
+			        <textarea name="descripcion" id="" cols="30" rows="3"></textarea>
+			      </label>
+			    </div>
+			  </div>
 
 			  <div class="row">
 			    <div class="large-6 columns">

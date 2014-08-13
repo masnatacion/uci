@@ -8,17 +8,16 @@
 				<h4>Pagos Varios</h4>
 			  <div class="row">
 			    <div class="large-6 columns">
-			      <label>Nombre
-			        <input type="text" name="nombre" placeholder="Nombre" />
+			      <label>Nombre del alumno
+			        <input type="text" name="nombre" disabled placeholder="Nombre del alumno" />
 			      </label>
 			    </div>
 			    <div class="large-6 columns">
-			      <label>RFC
-			        <input type="text" name="rfc" placeholder="RFC" />
+			      <label>Número contable
+			        <input type="text" name="numero" disabled placeholder="Número contable" />
 			      </label>
 			    </div>
 			  </div>
-
 
 
 			  <div class="row">
