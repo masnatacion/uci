@@ -1,7 +1,7 @@
 @extends('treasury.dashboard')
 
 @section('content')
-<section class="content">
+<section class="content2">
 
 <h3>Treasury Services</h3>
 <dl class="sub-nav">
@@ -17,68 +17,46 @@
 </dl>
 
 
-<section>
-	<div class="row">
-		<div class="large-6 columns">
-			<div class="panel">
-				<div class="row">
-					<div class="large-3 columns">
-						<span class="icon-man" style="font-size:8em"></span>
-					</div>
-					<div class="large-9 columns">
-						<ul class="no-bullet">
-							<li><h4>NC. 1025824</h4></li>
-							<li>Juan Manuel Rodriguez Lopez</li>
-							<li>Lic Diseño Grafico</li>
-							<li>Periodo: 14-3</li>
-							<li>Estatus: Activo</li>
-						</ul>
-						
-					</div>
+<div class="row">
+	<div class="large-12 columns">
+		<div class="panel">
+			<div class="row">
+				<div class="large-1 columns">
+					<span class="icon-man" style="font-size:3em"></span>
 				</div>
-				<div class="row">
-					<div class="large-12 columns">
-						<hr>
-						<div class="row">
-							<div class="large-6 columns">
-								<button class="button expand background-gray">Inscripción</button>
-							</div>
-							<div class="large-6 columns">
-								<button class="button expand background-gray">Datos personales</button>
-							</div>
+				<div class="large-11 columns">
+
+					<div class="row">
+						<div class="large-4 columns">
+							<ul class="no-bullet">
+								<li><h3>NC. 1025824</h3></li>
+
+							</ul>
 						</div>
-						<div class="row">
-							<div class="large-6 columns">
-								<button class="button expand background-gray">Documentación</button>
-							</div>
-							<div class="large-6 columns">
-								<button class="button expand background-gray">Baja de alumno</button>
-							</div>
+						<div class="large-4 columns">
+							<ul class="no-bullet">
+								<li>Juan Manuel Rodriguez Lopez</li>
+								<li>Lic Diseño Grafico</li>
+							</ul>
 						</div>
-						<div class="row">
-							<div class="large-6 columns">
-								<button class="button expand background-gray">Reactivar alumno</button>
-							</div>
-							<div class="large-6 columns">
-								<button class="button expand background-gray">Reinscripción</button>
-							</div>
-						</div>
-						<div class="row">
-							<div class="large-6 columns">
-								<button class="button expand background-gray">Kardex</button>
-							</div>
-							<div class="large-6 columns">
-								<button class="button expand background-gray">Calificaciones</button>
-							</div>
+						<div class="large-4 columns">
+							<ul class="no-bullet">
+								<li>Periodo: 14-3</li>
+								<li>Estatus: Activo</li>
+							</ul>
 						</div>
 					</div>
+
+					
 				</div>
 			</div>
-		</div>
-		<div class="large-6 columns">
-			@yield("form")
+
 		</div>
 	</div>
+</div>
+
+<section>
+	@yield("form")
 </section>
 
 </section>

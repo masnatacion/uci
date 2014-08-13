@@ -3,9 +3,8 @@
 @section('form')
 	
 	<div class="row">
-		<div class="large-12 columns large-centered">
+		<div class="large-6 columns">
 	
-			<form>
 				<h4>Negociar Pago</h4>
 			  <div class="row">
 			    <div class="large-6 columns">
@@ -62,6 +61,10 @@
 			    </div>
 			  </div>
 
+		</div>
+
+		<div class="large-6 columns">
+			
 			  <div class="row">
 
 			    <div class="large-12 columns panel">
@@ -96,9 +99,7 @@
 			    	<button class="button expand background-gray">Cancelar</button>
 			    </div>
 			  </div>
-
-			</form>
-
 		</div>
+
 	</div>	
 @stop
