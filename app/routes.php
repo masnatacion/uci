@@ -74,6 +74,78 @@ Route::get('actualizar-cuenta', function(){
 });
 
 
+
+// academic services
+
+
+Route::get('nuevo-alumno', function(){
+
+	return View::make('academic.nuevo-alumno');
+});
+
+Route::get('modificar-datos-personales', function(){
+
+	return View::make('academic.modificar-datos-personales');
+});
+
+Route::get('documentacion', function(){
+
+	return View::make('academic.documentacion');
+});
+
+Route::get('baja-de-alumno', function(){
+
+	return View::make('academic.baja-de-alumno');
+});
+
+Route::get('reactivar-alumno', function(){
+
+	return View::make('academic.reactivar-alumno');
+});
+
+Route::get('inscripcion', function(){
+
+	return View::make('academic.inscripcion');
+});
+
+
+Route::get('inscripcion', function(){
+
+	return View::make('academic.inscripcion');
+});
+
+
+Route::get('kardex', function(){
+
+	return View::make('academic.kardex');
+});
+
+Route::get('calificaciones', function(){
+
+	return View::make('academic.calificaciones');
+});
+
+
+Route::get('faltas', function(){
+
+	return View::make('academic.faltas');
+});
+
+Route::get('administrar-beca', function(){
+
+	return View::make('academic.administrar-beca');
+});
+
+Route::get('cambiar-contrasena', function(){
+
+	return View::make('academic.cambiar-contrasena');
+});
+
+
+
+
+
+
 /*
 Route::get('/', function()
 {

@@ -56,45 +56,10 @@
 	"buffers":
 	[
 		{
-			"file": "app/views/treasury/nota-de-credito.blade.php",
-			"settings":
-			{
-				"buffer_size": 1322,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "<?php\n\n/*\n|--------------------------------------------------------------------------\n| Application Routes\n|--------------------------------------------------------------------------\n|\n| Here is where you can register all of the routes for an application.\n| It's a breeze. Simply tell Laravel the URIs it should respond to\n| and give it the Closure to execute when that URI is requested.\n|\n*/\nRoute::get('/', function(){\n\n	return View::make('login');\n});\n\nRoute::get('dashboard', function(){\n\n	return View::make('treasury.dashboard');\n});\n\nRoute::get('registro-pago', function(){\n\n	return View::make('treasury.registro-pago');\n});\n\nRoute::get('registro-varios', function(){\n\n	return View::make('treasury.registro-varios');\n});\n\nRoute::get('conceptos-varios', function(){\n\n	return View::make('treasury.conceptos-varios');\n});\n\nRoute::get('pagos-varios', function(){\n\n	return View::make('treasury.pagos-varios');\n});\n\n\nRoute::get('pago-externo', function(){\n\n	return View::make('treasury.pago-externo');\n});\n\nRoute::get('nota-de-credito', function(){\n\n	return View::make('treasury.nota-de-credito');\n});\n\n\nRoute::get('cancelacion-transaccion', function(){\n\n	return View::make('treasury.cancelacion-transaccion');\n});\n\n\nRoute::get('cartera-vencida', function(){\n\n	return View::make('treasury.cartera-vencida');\n});\n\nRoute::get('negociar-pago', function(){\n\n	return View::make('treasury.negociar-pago');\n});\n\nRoute::get('actualizar-cuenta', function(){\n\n	return View::make('treasury.actualizar-cuenta');\n});\n\n\n/*\nRoute::get('/', function()\n{\n	return View::make('hello');\n});\n*/",
-			"file": "app/routes.php",
-			"file_size": -1,
-			"file_write_time": -1,
-			"settings":
-			{
-				"buffer_size": 1573,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/treasury/treasury.blade.php",
-			"settings":
-			{
-				"buffer_size": 2560,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "app/views/treasury/cartera-vencida.blade.php",
 			"settings":
 			{
-				"buffer_size": 2033,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/treasury/negociar-pago.blade.php",
-			"settings":
-			{
-				"buffer_size": 2031,
+				"buffer_size": 2828,
 				"line_ending": "Unix"
 			}
 		},
@@ -102,23 +67,7 @@
 			"file": "app/views/treasury/actualizar-cuenta.blade.php",
 			"settings":
 			{
-				"buffer_size": 2056,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/layout.blade.php",
-			"settings":
-			{
-				"buffer_size": 2832,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "public/css/vendor/responsive-tables.css",
-			"settings":
-			{
-				"buffer_size": 964,
+				"buffer_size": 2074,
 				"line_ending": "Unix"
 			}
 		}
@@ -221,19 +170,24 @@
 	},
 	"file_history":
 	[
-		"/Users/miguelmartinez/Sites/uci/public/js/foundation/responsive-tables.js",
-		"/Users/miguelmartinez/Sites/uci/public/css/vendor/responsive-tables.css",
 		"/Users/miguelmartinez/Sites/uci/app/views/treasury/cancelacion-transaccion.blade.php",
-		"/Users/miguelmartinez/Sites/uci/app/views/treasury/pago-externo.blade.php",
-		"/Users/miguelmartinez/Sites/uci/app/views/treasury/registro-varios.blade.php",
 		"/Users/miguelmartinez/Sites/uci/app/views/treasury/conceptos-varios.blade.php",
-		"/Users/miguelmartinez/Sites/uci/app/routes.php",
+		"/Users/miguelmartinez/Sites/uci/app/views/treasury/registro-varios.blade.php",
 		"/Users/miguelmartinez/Sites/uci/app/views/treasury/pagos-varios.blade.php",
+		"/Users/miguelmartinez/Sites/uci/app/views/treasury/pago-externo.blade.php",
+		"/Users/miguelmartinez/Sites/uci/app/views/treasury/nota-de-credito.blade.php",
+		"/Users/miguelmartinez/Sites/uci/app/views/treasury/negociar-pago.blade.php",
+		"/Users/miguelmartinez/Sites/uci/app/views/password.blade.php",
+		"/Users/miguelmartinez/Sites/uci/app/views/treasury/treasury.blade.php",
+		"/Users/miguelmartinez/Sites/uci/app/routes.php",
+		"/Users/miguelmartinez/Sites/uci/app/views/treasury/cartera-vencida.blade.php",
+		"/Users/miguelmartinez/Sites/uci/app/views/treasury/actualizar-cuenta.blade.php",
+		"/Users/miguelmartinez/Sites/uci/app/views/layout.blade.php",
+		"/Users/miguelmartinez/Sites/uci/public/css/vendor/responsive-tables.css",
+		"/Users/miguelmartinez/Sites/uci/public/js/foundation/responsive-tables.js",
 		"/Users/miguelmartinez/Sites/uci/app/views/login-topbar.blade.php",
 		"/Users/miguelmartinez/Sites/uci/stylus/stylus.styl",
 		"/Users/miguelmartinez/Sites/uci/app/views/treasury/dashboard.blade.php",
-		"/Users/miguelmartinez/Sites/uci/app/views/layout.blade.php",
-		"/Users/miguelmartinez/Sites/uci/app/views/treasury/treasury.blade.php",
 		"/Users/miguelmartinez/Sites/uci/app/views/login.blade.php",
 		"/Users/miguelmartinez/Sites/uci/app/views/treasury/dashboard-topbar.blade.php",
 		"/Users/miguelmartinez/Sites/uci/app/views/treasury/home.blade.php",
@@ -343,12 +297,7 @@
 		"/Users/miguelmartinez/Sites/masnatacion/application/libraries/flourish/fNumber.php",
 		"/Users/miguelmartinez/Sites/masnatacion/application/views/home/menu-profesores.php",
 		"/Users/miguelmartinez/Sites/masnatacion/application/views/home/menu-soytriatleta.php",
-		"/Users/miguelmartinez/Sites/masnatacion/stylus/events.styl",
-		"/Users/miguelmartinez/Sites/masnatacion/application/libraries/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/HTML.SafeEmbed.txt",
-		"/Users/miguelmartinez/Sites/masnatacion/application/views/home/home.php",
-		"/Users/miguelmartinez/Sites/masnatacion/application/libraries/flourish/fUpload.php",
-		"/Users/miguelmartinez/Sites/masnatacion/stylus/slide-menu.styl",
-		"/Users/miguelmartinez/Sites/masnatacion/application/config/smileys.php"
+		"/Users/miguelmartinez/Sites/masnatacion/stylus/events.styl"
 	],
 	"find":
 	{
@@ -369,6 +318,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"6",
+			"form",
 			"responsive",
 			"6",
 			"li",
@@ -494,9 +445,7 @@
 			"html",
 			" +",
 			"111",
-			"11",
-			"hola",
-			"hol"
+			"11"
 		],
 		"highlight": false,
 		"in_selection": false,
@@ -532,80 +481,24 @@
 	"groups":
 	[
 		{
-			"selected": 5,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "app/views/treasury/nota-de-credito.blade.php",
+					"file": "app/views/treasury/cartera-vencida.blade.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1322,
+						"buffer_size": 2828,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								1322
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 445.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "app/routes.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1573,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1417,
-								1427
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 1099.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "app/views/treasury/treasury.blade.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2560,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								588,
-								588
+								2514,
+								2514
 							]
 						],
 						"settings":
@@ -614,152 +507,39 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1945.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "app/views/treasury/cartera-vencida.blade.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2033,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								2033
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "app/views/treasury/negociar-pago.blade.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2031,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								158,
-								158
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
+					"buffer": 1,
 					"file": "app/views/treasury/actualizar-cuenta.blade.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2056,
+						"buffer_size": 2074,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1466,
-								1466
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 1038.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "app/views/layout.blade.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2832,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2286,
-								2226
+								1759,
+								1759
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1329.0,
+						"translation.y": 1109.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "public/css/vendor/responsive-tables.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 964,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								197,
-								197
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage"
-						},
-						"translation.x": 1067.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]

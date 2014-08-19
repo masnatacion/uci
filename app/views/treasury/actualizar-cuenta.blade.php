@@ -1,12 +1,11 @@
 @extends('treasury.treasury')
 
 @section('form')
-	
+<form>
 	<div class="row">
-		<div class="large-12 columns large-centered">
+		<h4>Actualizar Cuenta</h4>
+		<div class="large-6 columns">
 	
-			<form>
-				<h4>Actualizar Cuenta</h4>
 			  <div class="row">
 			    <div class="large-6 columns">
 			      <label>Nombre del alumno
@@ -47,6 +46,14 @@
 			    </div>
 			  </div>
 
+
+
+
+
+		</div>
+
+		<div class="large-6 columns">
+
 			  <div class="row">
 			  	<div class="large-12 columns">
 
@@ -69,7 +76,7 @@
 					</table>
 			  	</div>
 			  </div>
-
+			  
 			  <div class="row">
 			    <div class="large-6 columns">
 			    	<button class="button expand background-green">Aceptar</button>
@@ -79,8 +86,8 @@
 			    </div>
 			  </div>
 
-			</form>
-
 		</div>
+
 	</div>	
+</form>
 @stop
