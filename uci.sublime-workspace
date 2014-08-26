@@ -55,22 +55,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "app/views/treasury/cartera-vencida.blade.php",
-			"settings":
-			{
-				"buffer_size": 2828,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/treasury/actualizar-cuenta.blade.php",
-			"settings":
-			{
-				"buffer_size": 2074,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -170,6 +154,23 @@
 	},
 	"file_history":
 	[
+		"/Users/miguelmartinez/Sites/uci/app/views/treasury/dashboard-topbar.blade.php",
+		"/Users/miguelmartinez/Sites/uci/app/views/academic/cambiar-contrasena.blade.php",
+		"/Users/miguelmartinez/Sites/uci/app/views/academic/faltas.blade.php",
+		"/Users/miguelmartinez/Sites/uci/app/views/academic/administrar-beca.blade.php",
+		"/Users/miguelmartinez/Sites/uci/app/views/academic/kardex.blade.php",
+		"/Users/miguelmartinez/Sites/uci/app/views/academic/calificaciones.blade.php",
+		"/Users/miguelmartinez/Sites/uci/app/views/academic/reinscripcion.blade.php",
+		"/Users/miguelmartinez/Sites/uci/app/views/academic/inscripcion.blade.php",
+		"/Users/miguelmartinez/Sites/uci/app/views/academic/reactivar-alumno.blade.php",
+		"/Users/miguelmartinez/Sites/uci/app/views/academic/documentacion.blade.php",
+		"/Users/miguelmartinez/Sites/uci/app/views/academic/baja-de-alumno.blade.php",
+		"/Users/miguelmartinez/Sites/uci/app/views/academic/modificar-datos-personales.blade.php",
+		"/Users/miguelmartinez/Sites/uci/app/views/academic/nuevo-alumno.blade",
+		"/Users/miguelmartinez/Sites/uci/app/routes.php",
+		"/Users/miguelmartinez/Sites/uci/app/views/treasury/dashboard.blade.php",
+		"/Users/miguelmartinez/Sites/uci/app/views/treasury/cartera-vencida.blade.php",
+		"/Users/miguelmartinez/Sites/uci/app/views/treasury/actualizar-cuenta.blade.php",
 		"/Users/miguelmartinez/Sites/uci/app/views/treasury/cancelacion-transaccion.blade.php",
 		"/Users/miguelmartinez/Sites/uci/app/views/treasury/conceptos-varios.blade.php",
 		"/Users/miguelmartinez/Sites/uci/app/views/treasury/registro-varios.blade.php",
@@ -179,17 +180,12 @@
 		"/Users/miguelmartinez/Sites/uci/app/views/treasury/negociar-pago.blade.php",
 		"/Users/miguelmartinez/Sites/uci/app/views/password.blade.php",
 		"/Users/miguelmartinez/Sites/uci/app/views/treasury/treasury.blade.php",
-		"/Users/miguelmartinez/Sites/uci/app/routes.php",
-		"/Users/miguelmartinez/Sites/uci/app/views/treasury/cartera-vencida.blade.php",
-		"/Users/miguelmartinez/Sites/uci/app/views/treasury/actualizar-cuenta.blade.php",
 		"/Users/miguelmartinez/Sites/uci/app/views/layout.blade.php",
 		"/Users/miguelmartinez/Sites/uci/public/css/vendor/responsive-tables.css",
 		"/Users/miguelmartinez/Sites/uci/public/js/foundation/responsive-tables.js",
 		"/Users/miguelmartinez/Sites/uci/app/views/login-topbar.blade.php",
 		"/Users/miguelmartinez/Sites/uci/stylus/stylus.styl",
-		"/Users/miguelmartinez/Sites/uci/app/views/treasury/dashboard.blade.php",
 		"/Users/miguelmartinez/Sites/uci/app/views/login.blade.php",
-		"/Users/miguelmartinez/Sites/uci/app/views/treasury/dashboard-topbar.blade.php",
 		"/Users/miguelmartinez/Sites/uci/app/views/treasury/home.blade.php",
 		"/Users/miguelmartinez/Sites/uci/app/views/treasury/registro-pago.blade.php",
 		"/Users/miguelmartinez/Sites/uci/app/views/actualizar-cuenta.blade.php",
@@ -285,19 +281,7 @@
 		"/Users/miguelmartinez/Downloads/scheld.php",
 		"/Users/miguelmartinez/Sites/masnatacion/application/views/home/videos.php",
 		"/Users/miguelmartinez/Sites/masnatacion/stylus/event/menu.styl",
-		"/Users/miguelmartinez/Sites/masnatacion/application/views/login.php",
-		"/Users/miguelmartinez/Sites/masnatacion/application/views/evento/menu.php",
-		"/Users/miguelmartinez/Sites/masnatacion/application/libraries/htmlpurifier/standalone/HTMLPurifier/Filter/ExtractStyleBlocks.php",
-		"/Users/miguelmartinez/Sites/masnatacion/application/libraries/htmlpurifier/standalone/HTMLPurifier/ConfigSchema/schema/Filter.ExtractStyleBlocks.Escaping.txt",
-		"/Users/miguelmartinez/Sites/masnatacion/application/libraries/flourish/fNotFoundException.php",
-		"/Users/miguelmartinez/Sites/masnatacion/application/libraries/flourish/fEnvironmentException.php",
-		"/Users/miguelmartinez/Sites/masnatacion/stylus/header.styl",
-		"/Users/miguelmartinez/Sites/masnatacion/stylus/modal.styl",
-		"/Users/miguelmartinez/Sites/masnatacion/application/libraries/flourish/fExpectedException.php",
-		"/Users/miguelmartinez/Sites/masnatacion/application/libraries/flourish/fNumber.php",
-		"/Users/miguelmartinez/Sites/masnatacion/application/views/home/menu-profesores.php",
-		"/Users/miguelmartinez/Sites/masnatacion/application/views/home/menu-soytriatleta.php",
-		"/Users/miguelmartinez/Sites/masnatacion/stylus/events.styl"
+		"/Users/miguelmartinez/Sites/masnatacion/application/views/login.php"
 	],
 	"find":
 	{
@@ -481,67 +465,8 @@
 	"groups":
 	[
 		{
-			"selected": 1,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "app/views/treasury/cartera-vencida.blade.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2828,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2514,
-								2514
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1945.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "app/views/treasury/actualizar-cuenta.blade.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2074,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1759,
-								1759
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1109.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -813,7 +738,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 271.0,
+	"side_bar_width": 355.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
