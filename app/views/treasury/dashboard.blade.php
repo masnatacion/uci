@@ -13,56 +13,48 @@
   <div class="medium-4 columns">
     <div class="panel" data-equalizer-watch>
 
-    <div id="canvas-holder">
-      <canvas id="chart-area" width="150" height="150"/>
-    </div>
 
-      <script>
-
-        Chart.defaults.global.responsive = true;
-
-            var pieData = [
-                {
-                  value: 300,
-                  color:"#F7464A",
-                  highlight: "#FF5A5E",
-                  label: "Red"
-                },
-                {
-                  value: 50,
-                  color: "#46BFBD",
-                  highlight: "#5AD3D1",
-                  label: "Green"
-                },
-                {
-                  value: 100,
-                  color: "#FDB45C",
-                  highlight: "#FFC870",
-                  label: "Yellow"
-                },
-                {
-                  value: 40,
-                  color: "#949FB1",
-                  highlight: "#A8B3C5",
-                  label: "Grey"
-                },
-                {
-                  value: 120,
-                  color: "#4D5360",
-                  highlight: "#616774",
-                  label: "Dark Grey"
-                }
-
-              ];
-
-              window.onload = function(){
-                var ctx = document.getElementById("chart-area").getContext("2d");
-                window.myPie = new Chart(ctx).Pie(pieData);
-              };
+      <script type="text/javascript" src="./js/jquery.js"></script>
+      <script type="text/javascript" src="./js/canvasjs.min.js"></script>
+      
+      <div id="pieContainer" style="height: 400px;position:relative;"></div>
 
 
+      <script type="text/javascript">
+jQuery(document).ready(function ($) {
+      var pieChart= new CanvasJS.Chart("pieContainer", {
+        theme: "theme2",
+        title:{
+          text: "Alumnos inscritos para el periodo actual"
+        },
+        legend:{
+          verticalAlign: "bottom",
+          horizontalAlign: "center"
+        },
+        data: [
+        {
+         type: "doughnut",
+         startAngle: 10,
+         toolTipContent: "{name} <strong>{y} %<strong>",
+         showInLegend: true,
+         indexLabel: "{name} {y}%",
+         dataPoints: [
+         {  y: 83, name:"Google" },
+         {  y: 8, name:"Yahoo!"},
+         {  y: 5, name:"Bing"},
+         {  y: 2, name:"Baidu"},
+         {  y: 2, name:"Others"}
+         ]
+       }
+       ]
+     });
 
-  </script>
+
+    pieChart.render();
+});
+
+      </script>
+
       
       
     </div>

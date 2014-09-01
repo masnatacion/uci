@@ -10,7 +10,7 @@
       </ul>
 
       <!-- Top Bar Section -->
-      <section class="top-bar-section">
+      <section class="top-bar-section topbar">
 
         <!-- Top Bar Left Nav Elements -->
 
@@ -56,6 +56,8 @@
         </ul>
         
         <!-- Top Bar Right Nav Elements -->
+
+
         <ul class="right">
           <li class="has-form">
             <div class="row collapse">
@@ -68,13 +70,25 @@
             </div>
           </li>
           <li class="divider"></li>
-          <li><a href="./settings">Settings</a></li>
-          <li class="divider"></li>
-          <li class="has-form show-for-large-up">
-            <a href="#" class="button alert">Salir</a>
+          <li class="has-form profile" data-dropdown="dropdown-profile" data-options="is_hover:true">
+            <ul>
+              <li class="user">Miguel Martinez</li>
+              <li><span class="icon-man avatar"></span></li>
+            </ul>
+            
+            <!-- <a href="#" class="button alert">Salir</a> -->
           </li>
         </ul>
 
       </section>
     </nav>
+
 </div>
+
+
+<ul id="dropdown-profile" class="f-dropdown" data-dropdown-content>
+  <li><a href="#">Mi Perfil</a></li>
+  <li><a href="#">Settings</a></li>
+  <li><a href="/" class="button alert">Salir</a>
+</li>
+</ul>

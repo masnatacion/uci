@@ -20,6 +20,12 @@ Route::get('dashboard', function(){
 	return View::make('treasury.dashboard');
 });
 
+Route::get('grid', function(){
+
+	return View::make('grid');
+});
+
+
 Route::get('registro-pago', function(){
 
 	return View::make('treasury.registro-pago');
