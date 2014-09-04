@@ -1,65 +1,67 @@
 @extends('treasury.dashboard')
 
 @section('content')
+
+<!-- Ext JS Files -->
+<link rel="stylesheet" href="./js/extjs/resources/ext-theme-neptune/ext-theme-neptune-all.css"/>
+<script type="text/javascript" src="./js/extjs/ext-all-debug.js"></script>
+
+
 <section class="content2">
 
-<h3>Academic Services</h3>
-<dl class="sub-nav">
-	<dd class="active"><a href="./nuevo-alumno">Nuevo Alumno</a></dd>
-	<dd><a href="./modificar-datos-personales">Modificar Datos Personales</a></dd>
-	<dd><a href="./documentacion">Documentación</a></dd>
-	<dd><a href="./baja-de-alumno">Baja de Alumno</a></dd>
-	<dd><a href="./reactivar-alumno">Reactivar Alumno</a></dd>
-	<dd><a href="./inscripcion">Inscripción</a></dd>
-	<dd><a href="./reinscripcion">Reinscripción</a></dd>
-	<dd><a href="./kardex">Kardex</a></dd>
-	<dd><a href="./caddficaciones">Caddficaciones</a></dd>
-	<dd><a href="./faltas">Faltas</a></dd>
-	<dd><a href="./administrar-beca">Administrar Beca</a></dd>
-	<dd><a href="./cambiar-contrasena">Cambiar Contraseña</a></dd>
-</dl>
+<h3>Kardex</h3>
 
-
-<div class="row">
-	<div class="large-12 columns">
-		<div class="panel">
-			<div class="row">
-				<div class="large-1 columns">
-					<span class="icon-man" style="font-size:3em"></span>
-				</div>
-				<div class="large-11 columns">
-
-					<div class="row">
-						<div class="large-4 columns">
-							<ul class="no-bullet">
-								<li><h3>NC. 1025824</h3></li>
-
-							</ul>
-						</div>
-						<div class="large-4 columns">
-							<ul class="no-bullet">
-								<li>Juan Manuel Rodriguez Lopez</li>
-								<li>Lic Diseño Grafico</li>
-							</ul>
-						</div>
-						<div class="large-4 columns">
-							<ul class="no-bullet">
-								<li>Periodo: 14-3</li>
-								<li>Estatus: Activo</li>
-							</ul>
-						</div>
-					</div>
-
-					
-				</div>
-			</div>
-
-		</div>
-	</div>
-</div>
 
 <section>
-	@yield("form")
+    <!-- App Files -->
+    <script type="text/javascript">
+		Ext.Loader.setConfig({
+		    enabled			: true,
+		    disableCaching	: true,
+		    paths  : {
+		      UCI   : "./js/uci/",
+		      Base  : "./js/base/",
+		      Ext   : "./js/extjs/src/"
+		   }
+		});
+
+		Ext.application({
+		    name        : 'UCI',
+		    appFolder   : "./js/UCI/",
+		    
+		    launch: function() {
+		        var me = this;
+
+		        grid = Ext.create('Base.grid.EditorGrid',{
+		            renderTo: "grid",
+		            data : [
+					        {
+					            filter : true,
+					            columns: [{
+					                        text    : "Data",
+					                        type    : "datefield"
+					                     },
+					                    {
+					                        text    : "Name"
+					                     }],
+					            // columns: ["Data"],        
+					            data : [
+					                {"Data":"2014-09-08 10:48:24.0","Name":"Adam","Result":""},
+					                {"esta":"esta2","Data":"2012-09-08 10:48:34.0","Name":"Carol","Result":"5.26"},
+					                {"Data":"2012-09-08 10:48:24.0","Name":"Adam","Result":""},
+					            ]
+
+					        }
+					],
+		            //url: './grid.json',
+
+
+		        });
+
+		    }
+		});
+    </script>
+	<div id="grid"></div>
 </section>
 
 </section>
