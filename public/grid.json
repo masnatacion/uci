@@ -1,0 +1,23 @@
+// http://docs.sencha.com/extjs/4.0.7/#!/api/Ext.grid.column.Column
+// Ext.grid.column.Action: Renders icons that can respond to click events inline
+// Ext.grid.column.Boolean: Renders for boolean values
+// Ext.grid.column.Date: Renders for date values
+// Ext.grid.column.Number: Renders for numeric values
+// Ext.grid.column.Template: Renders a value using an Ext.XTemplate using the record data
+{
+	filter : true,
+	columns: [{
+				text    : "Data",
+				type	: "datefield"
+			 },
+			{
+				text    : "Name"
+			 }],
+	// columns: ["Data"],		 
+	data : [
+	    {"Data":"2012-09-08 10:48:24.0","Name":"Adam","Result":""},
+	    {"esta":"esta2","Data":"2012-09-08 10:48:34.0","Name":"Carol","Result":"5.26"},
+		{"Data":"2012-09-08 10:48:24.0","Name":"Adam","Result":""},
+	]
+
+}

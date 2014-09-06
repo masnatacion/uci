@@ -32,29 +32,134 @@
 		    launch: function() {
 		        var me = this;
 
-		        grid = Ext.create('Base.grid.EditorGrid',{
+		        function ColumnCal(index,record,metaData)
+		        {
+		        	var row = record.raw;
+
+		        	record.data["p"+index] = 0;
+		        	if(row.f_grade1 > 0)
+		        	{
+		        		record.data["p"+index] = (row["f_grade"+index] / row["n_p"+index] * 100).toFixed(2);
+
+			        	if(record.data["p"+index] >= 6)
+			        		metaData.style="color: #5ec23d;";
+			        	else if(record.data["p"+index] < 6)
+			        		metaData.style="color: #f04124;";
+
+		        		
+		            	return record.data["p"+index];
+		        	}
+		        	else
+		        		return;
+		        };
+
+
+		        grid = Ext.create('UCI.academic.Kardex',{
 		            renderTo: "grid",
-		            data : [
-					        {
-					            filter : true,
-					            columns: [{
-					                        text    : "Data",
-					                        type    : "datefield"
-					                     },
-					                    {
-					                        text    : "Name"
-					                     }],
-					            // columns: ["Data"],        
-					            data : [
-					                {"Data":"2014-09-08 10:48:24.0","Name":"Adam","Result":""},
-					                {"esta":"esta2","Data":"2012-09-08 10:48:34.0","Name":"Carol","Result":"5.26"},
-					                {"Data":"2012-09-08 10:48:24.0","Name":"Adam","Result":""},
-					            ]
+					columns : [
+					
+								{
+				                    text    	: "Clave",
+				                    dataIndex 	: "n_key",
+				                    width		: 40,
+				                    renderer	: function(value,metaData){
+				                    	metaData.style+="font-size:1.3em;"
+				                    	return value;
+				                    }
+				                 },
+				                {
+				                    text    	: "Seriación",
+				                    dataIndex 	: "n_id_precedence",
+				                    width		: 40,
+				                },
+								{
+				                    text    	: "Nombre de la Materia",
+				                    dataIndex 	: "s_name",
+				                 },
+				                {
+				                    text    	: "Nivel",
+				                    dataIndex 	: "n_id_level",
+				                    width		: 30,
+				                },
+								{
+				                    text    	: "Tipo",
+				                    dataIndex 	: "GradeType",
+				                    width		: 20,
+				                 },
+				                {
+				                    text    	: "Periodo",
+				                    width		: 50,
+							        renderer: function(value,metaData,record) {
+							        	var row = record.raw;
+							        	if(!Ext.isEmpty(row.s_year))
+							            	return row.s_year+""+row.Course;
+							        	else
+							        		return;
+							        }
+				                },
+								{
+				                    text    	: "Grupo",
+				                    dataIndex 	: "s_group",
+				                    width		: 40,
+				                 },
+				                {
+				                    text    	: "P1",
+				                    width		: 40,
+				                    dataIndex	: "p1",
+							        renderer: function(value,metaData,record) {
+							        	
+							        	return ColumnCal(1,record,metaData);
+							        }
+				                },
+								{
+				                    text    	: "P2",
+				                    dataIndex	: "p2",
+				                    width		: 40,
+							        renderer: function(value,metaData,record) {
+							        	return ColumnCal(2,record,metaData);
+							        }
+				                 },
+				                {
+				                    text    	: "P3",
+				                    dataIndex	: "p3",
+				                    width		: 40,
+							        renderer: function(value,metaData,record) {
+							        	return ColumnCal(3,record,metaData);
+							        }
+				                },
+				                {
+				                    text    	: "P4",
+				                    dataIndex	: "p4",
+				                    hidden :true,
+				                    width		: 40,
+							        renderer: function(value,metaData,record) {
+							        	return ColumnCal(4,record,metaData);
+							        }
+				                },
+				                {
+				                    text    	: "Promedio",
+				                    width		: 40,
+				                    dataIndex	: "avg",
+							        renderer: function(value,metaData,record) {
+							        	
+							        	var divisor = (record.data.p1 > 0 ? 1 : 0)+ (record.data.p2 > 0 ? 1 : 0) + (record.data.p3 > 0 ? 1 : 0) + (record.data.p4 > 0 ? 1 : 0);
 
-					        }
-					],
-		            //url: './grid.json',
+							        	record.data.avg = parseFloat(record.data.p1) + parseFloat(record.data.p2) + parseFloat(record.data.p3) + parseFloat(record.data.p4);
+							        	record.data.avg = (record.data.avg / divisor).toFixed(2);
 
+							        	var decimal =  record.data.avg - Math.floor(record.data.avg);
+
+							        	if(record.data.avg >= 6)
+							        		metaData.style="background:#5ec23d;color: white;";
+							        	else if(record.data.avg < 6)
+							        		metaData.style="background:#f04124;color: white;";
+
+							        	metaData.style+="font-size:1.3em;"
+
+							        	return record.data.avg > 0 ? record.data.avg : "";
+							        }
+				                },
+				                ]
 
 		        });
 
