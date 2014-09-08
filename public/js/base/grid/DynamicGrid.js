@@ -13,7 +13,7 @@ Ext.define('Base.grid.DynamicGrid', {
         'Ext.ux.grid.FiltersFeature',
         'Ext.ux.grid.plugin.HeaderFilters'
     ],
-    deleteRow : true,
+    deleteRow : false,
     data : [],
     columns : [],
     // URL used for request to the server. Required

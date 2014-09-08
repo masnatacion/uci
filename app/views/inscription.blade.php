@@ -38,16 +38,7 @@
 
 		      
 		        var grid = Ext.create('UCI.academic.Inscription',{
-		            renderTo: "grid",
-					columns : [
-					
-								{
-				                    header    	: "GradeId",
-				                    dataIndex 	: "GradeId",
-
-				                    width		: 40
-				                }
-				               ]
+		            renderTo: "grid"
 
 		        });
 
