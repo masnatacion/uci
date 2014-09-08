@@ -180,9 +180,13 @@
 					style : "margin-right:1em",
 					emptyText:"¿Que estás buscando?",
 					enableKeyEvents : true,
-					listener : {
+					listeners : {
 						'keyup' : function(_me){
-							console.log(_me.getValue())
+
+							
+							grid.filter.setFilter(function(rowCache, rowId){
+							     return true;
+							});
 						}
 					}
 				});

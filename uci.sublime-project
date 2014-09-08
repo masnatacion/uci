@@ -8,6 +8,10 @@
 		{
 			"follow_symlinks": true,
 			"path": "/Users/miguelmartinez/Sites/alquimia"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "/Users/miguelmartinez/Sites/masnatacion_old"
 		}
 	]
 }

@@ -13,7 +13,7 @@ Ext.define('Base.grid.DynamicGrid', {
         'Ext.ux.grid.FiltersFeature',
         'Ext.ux.grid.plugin.HeaderFilters'
     ],
-
+    deleteRow : true,
     data : [],
     columns : [],
     // URL used for request to the server. Required
@@ -31,7 +31,39 @@ Ext.define('Base.grid.DynamicGrid', {
          icon: 'resources/icons/recycleBin.png'
      }],
 
+    removeColumn : function(){
 
+        var me = this;
+        return {
+            xtype: 'actioncolumn',
+            width: 50,
+            items: [{
+                icon: 'js/extjs/src/ux/grid/plugin/resources/images/grid-grouping/delete.png',
+                // Use a URL in the icon config
+                tooltip: 'Eliminar',
+                handler: function (grid, rowIndex, colIndex) {
+                    var rec = me.getStore().getAt(rowIndex);
+                    me.onDelete(rec,rowIndex);
+                    
+                }
+            }]
+        };
+
+    },
+    onDelete : function(record,index){
+        var me = this;
+
+        Ext.MessageBox.confirm('Eliminar', 'Se eliminara &#191;Esta seguro?', 
+                function(btn) {
+                   if(btn=='yes') {
+
+                    me.fireEvent('eliminando', me, record); 
+                    me.getStore().removeAt(index);
+
+                   }
+              });
+                 
+    },
     sortByKey :function (array, key) {
         return array.sort(function(a, b) {
             var x = a[key];
@@ -51,6 +83,8 @@ Ext.define('Base.grid.DynamicGrid', {
         
         var me = this;
 
+        if(me.deleteRow)
+            me.columns.push(me.removeColumn());
 
         var filters = {
             ftype: 'filters',
@@ -141,8 +175,13 @@ Ext.define('Base.grid.DynamicGrid', {
                     listeners: {
                         'metachange': function(store, meta) {
 
-                            if(me.columns.length == 0)
+                            if(me.columns.length == 0){
+
+                                // if(me.deleteRow)
+                                //     meta.columns.push(me.removeColumn());
+
                                 me.reconfigure(store, meta.columns);
+                            }
                         }
                     },
 
@@ -245,6 +284,10 @@ Ext.define('Base.grid.DynamicGrid', {
 
         });
             
+
+
+        if(me.deleteRow)
+            columns.push(me.removeColumn());    
 
         return { fields: fields, columns: columns };
     }
