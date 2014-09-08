@@ -2,6 +2,9 @@
 
 @section('content')
 
+
+    <link rel="stylesheet" type="text/css" href="./js/extjs/src/ux/grid/feature/resources/MultiGroupingSummary.css" /> 
+    <link rel="stylesheet" type="text/css" href="./js/extjs/src/ux/grid/plugin/resources/GroupingPanel.css" /> 
 <!-- Ext JS Files -->
 <link rel="stylesheet" href="./js/extjs/resources/ext-theme-neptune/ext-theme-neptune-all.css"/>
 <script type="text/javascript" src="./js/extjs/ext-all-debug.js"></script>
@@ -54,14 +57,20 @@
 		        };
 
 
-		        grid = Ext.create('UCI.academic.Kardex',{
-		            renderTo: "grid",
+		        
+
+		        var grid = Ext.create('UCI.academic.Kardex',{
+		            
 					columns : [
 					
 								{
-				                    text    	: "Clave",
+				                    header    	: "Clave",
 				                    dataIndex 	: "n_key",
+
 				                    width		: 40,
+				                    groupable:      true,
+					                groupHeaderTpl: 'n_key: {name}',
+					                //summaryType:    'max',
 				                    renderer	: function(value,metaData){
 				                    	metaData.style+="font-size:1.3em;"
 				                    	return value;
@@ -71,10 +80,14 @@
 				                    text    	: "Seriación",
 				                    dataIndex 	: "n_id_precedence",
 				                    width		: 40,
+				                    groupable:      true,
+					                groupHeaderTpl: 'Due: {name}',
 				                },
 								{
 				                    text    	: "Nombre de la Materia",
 				                    dataIndex 	: "s_name",
+				                    groupable:      true,
+					                groupHeaderTpl: 'Due: {name}',
 				                 },
 				                {
 				                    text    	: "Nivel",
@@ -162,6 +175,26 @@
 				                ]
 
 		        });
+
+				var search = Ext.create('Ext.form.field.Text',{
+					style : "margin-right:1em",
+					emptyText:"¿Que estás buscando?",
+					enableKeyEvents : true,
+					listener : {
+						'keyup' : function(_me){
+							console.log(_me.getValue())
+						}
+					}
+				});
+				var panel = Ext.create('Ext.panel.Panel',{
+					renderTo: "grid",
+					layout : "fit",
+					items : [
+						search,
+						grid
+
+					]
+				});
 
 		    }
 		});

@@ -13,8 +13,9 @@ Ext.define('Base.grid.DynamicGrid', {
         'Ext.ux.grid.FiltersFeature',
         'Ext.ux.grid.plugin.HeaderFilters'
     ],
+
     data : [],
-    plugins :[],
+    columns : [],
     // URL used for request to the server. Required
     url: '',
     context : [{
@@ -98,7 +99,8 @@ Ext.define('Base.grid.DynamicGrid', {
                 forceFit: true,
                 store: Ext.create('Ext.data.Store', {
                     data: [],
-                    fields : []
+                    fields : [],
+                    
                 })
             });
 
@@ -127,6 +129,7 @@ Ext.define('Base.grid.DynamicGrid', {
             });
         }
         else {
+
             Ext.applyIf(me, {
                 columns: [],
                 forceFit: true,
@@ -138,7 +141,8 @@ Ext.define('Base.grid.DynamicGrid', {
                     listeners: {
                         'metachange': function(store, meta) {
 
-                            me.reconfigure(store, meta.columns);
+                            if(me.columns.length == 0)
+                                me.reconfigure(store, meta.columns);
                         }
                     },
 
@@ -149,7 +153,8 @@ Ext.define('Base.grid.DynamicGrid', {
                     proxy: {
                         reader: 'dynamicReader',
                         type: 'rest',
-                        _reconfig : me._reconfig,
+                        grid : me,
+
                         url: me.url
                     }
                 })
@@ -193,13 +198,17 @@ Ext.define('Base.grid.DynamicGrid', {
     {
 
         //var data    = json.data;
-        var item    = json.columns;
-        var editor  = json.editor;
-        var fields  = new Array();
-        var columns = new Array();
-        var p;
 
-        Ext.Array.each(item,function(column,i){
+        var me      = this;
+        var item    = json.columns || json[0];
+        var editor  = json.editor;
+        var fields  = [];
+        var columns = [];
+        var items   = [];
+
+        
+
+        Ext.iterate(item,function(column,i){
            
 
             var _editor = {
@@ -209,6 +218,7 @@ Ext.define('Base.grid.DynamicGrid', {
 
             if(Ext.isObject(column))
             {
+
 
                 fields.push({
                                 name: column.dataIndex || column.text, 
@@ -234,6 +244,7 @@ Ext.define('Base.grid.DynamicGrid', {
 
 
         });
+            
 
         return { fields: fields, columns: columns };
     }

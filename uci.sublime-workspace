@@ -67,6 +67,30 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "app/views/academic/kardex.blade.php",
+			"settings":
+			{
+				"buffer_size": 5366,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/js/uci/academic/Kardex.js",
+			"settings":
+			{
+				"buffer_size": 2084,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/js/base/grid/DynamicGrid.js",
+			"settings":
+			{
+				"buffer_size": 6849,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -164,8 +188,23 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
+	"expanded_folders":
+	[
+		"/Users/miguelmartinez/Sites/uci/app",
+		"/Users/miguelmartinez/Sites/uci/app/views/academic",
+		"/Users/miguelmartinez/Sites/uci/public",
+		"/Users/miguelmartinez/Sites/uci/public/js",
+		"/Users/miguelmartinez/Sites/uci/public/js/base",
+		"/Users/miguelmartinez/Sites/uci/public/js/base/grid",
+		"/Users/miguelmartinez/Sites/uci/public/js/uci",
+		"/Users/miguelmartinez/Sites/uci/public/js/uci/academic",
+		"/Users/miguelmartinez/Sites/alquimia/js",
+		"/Users/miguelmartinez/Sites/alquimia/js/tvsa"
+	],
 	"file_history":
 	[
+		"/Users/miguelmartinez/Sites/uci/public/js/uci/Kardex.js",
+		"/Users/miguelmartinez/Sites/uci/public/js/uci/academic/Kardex.js",
 		"/Users/miguelmartinez/Sites/groundbreaker/index.html",
 		"/Users/miguelmartinez/Sites/groundbreaker/stylus/home.styl",
 		"/Users/miguelmartinez/Sites/groundbreaker/stylus/footer.styl",
@@ -291,9 +330,7 @@
 		"/Users/miguelmartinez/Sites/masnatacion/application/controllers/videos.php",
 		"/Users/miguelmartinez/Sites/masnatacion/application/views/evento/resultados.php",
 		"/Users/miguelmartinez/Sites/masnatacion/application/views/records/records.php",
-		"/Users/miguelmartinez/Sites/openenglish/dev.puroleads.com/httpdocs/config.php",
-		"/Users/miguelmartinez/Downloads/foundation-5.2.3/css/foundation.css",
-		"/Users/miguelmartinez/Sites/masnatacion/application/views/resultados/resultados.php"
+		"/Users/miguelmartinez/Sites/openenglish/dev.puroleads.com/httpdocs/config.php"
 	],
 	"find":
 	{
@@ -314,6 +351,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"Ext.Ajax",
 			"span",
 			"span5",
 			"I want to learn more",
@@ -440,8 +478,7 @@
 			"icon-arrow-right",
 			"first-level",
 			"soy nadador",
-			"menu",
-			"record"
+			"menu"
 		],
 		"highlight": false,
 		"in_selection": false,
@@ -477,8 +514,96 @@
 	"groups":
 	[
 		{
+			"selected": 1,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "app/views/academic/kardex.blade.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5366,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2353,
+								2344
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 3.0,
+						"translation.y": 1697.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "public/js/uci/academic/Kardex.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2084,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1989,
+								1989
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 829.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "public/js/base/grid/DynamicGrid.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6849,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3713,
+								3713
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 508.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -743,6 +868,7 @@
 		],
 		"width": 0.0
 	},
+	"selected_group": 0,
 	"settings":
 	{
 	},

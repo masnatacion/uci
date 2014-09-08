@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"ma",
+				"margin-bottom"
+			],
+			[
 				"fu",
 				"function"
 			],
@@ -22,10 +26,6 @@
 			[
 				"in",
 				"input"
-			],
-			[
-				"ma",
-				"margin-top"
 			],
 			[
 				"font",
@@ -166,12 +166,13 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/miguelmartinez/Sites/groundbreaker"
+		"/Users/miguelmartinez/Sites/groundbreaker/stylus",
+		"/Users/miguelmartinez/Sites/groundbreaker/template"
 	],
 	"file_history":
 	[
-		"/Users/miguelmartinez/Sites/groundbreaker/index.html",
 		"/Users/miguelmartinez/Sites/groundbreaker/stylus/home.styl",
+		"/Users/miguelmartinez/Sites/groundbreaker/index.html",
 		"/Users/miguelmartinez/Sites/groundbreaker/stylus/footer.styl",
 		"/Users/miguelmartinez/Sites/alquimia/index.html",
 		"/Users/miguelmartinez/Sites/alquimia/js/tvsa/Grid.js",
@@ -301,7 +302,7 @@
 	],
 	"find":
 	{
-		"height": 30.0
+		"height": 38.0
 	},
 	"find_in_files":
 	{
@@ -318,6 +319,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"stylus",
+			"styl",
+			"top-a",
+			"btn-want-learn",
 			"span",
 			"span5",
 			"I want to learn more",
@@ -441,11 +446,7 @@
 			"dd",
 			"menu-profesores",
 			"icon-arrow-down",
-			"icon-arrow-right",
-			"first-level",
-			"soy nadador",
-			"menu",
-			"record"
+			"icon-arrow-right"
 		],
 		"highlight": false,
 		"in_selection": false,
@@ -755,7 +756,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 308.0,
+	"side_bar_width": 205.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

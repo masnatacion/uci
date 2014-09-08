@@ -148,7 +148,10 @@ Route::get('cambiar-contrasena', function(){
 });
 
 
+Route::get('inscription', function(){
 
+	return View::make('inscription');
+});
 
 
 

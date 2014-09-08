@@ -31,9 +31,13 @@ Ext.define('Base.data.reader.DynamicReader', {
     readRecords: function(json) {
         
         var me      = this;
-        var data    = json.data;
+        var data    = json.data || [];
 
-        data.metaData = me.proxy._reconfig(json);
+        if(data)
+            data = json;
+
+        data.metaData = me.proxy.grid._reconfig(json);
+
 
         return this.callParent([data]);
     }
