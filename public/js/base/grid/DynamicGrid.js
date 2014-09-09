@@ -18,22 +18,8 @@ Ext.define('Base.grid.DynamicGrid', {
     columns : [],
     // URL used for request to the server. Required
     //url: '',
-    url : [
-            {"query" : "./GetSubjects.json"},
-            {"delete": "./response.json"}
-           ],
-    context : [{
-         text: 'Edytuj',
-         icon: 'resources/icons/pencil.png',
-         handler: function  () {
-             var me = this;
-             var data = me.ownerCt.data;
-             
-         }
-     }, {
-         text: 'Usuń',
-         icon: 'resources/icons/recycleBin.png'
-     }],
+    url : '',
+    context : null,
 
     removeColumn : function(){
 
@@ -306,18 +292,16 @@ Ext.define('Base.grid.DynamicGrid', {
 
 
 
-        if(me.context)
+        if(Ext.isArray(me.context))
         {
             me.contextMenu = Ext.create('Ext.menu.Menu', {
-                 height: 58,
-                 width: 140,
                  items: me.context
              });
         }
 
         me.on("itemcontextmenu",function(view, record, item, index, e){
 
-            if(me.context)
+            if(Ext.isArray(me.context))
             {
                 e.stopEvent();
 
