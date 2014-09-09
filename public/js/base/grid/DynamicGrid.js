@@ -17,7 +17,11 @@ Ext.define('Base.grid.DynamicGrid', {
     data : [],
     columns : [],
     // URL used for request to the server. Required
-    url: '',
+    //url: '',
+    url : [
+            {"query" : "./GetSubjects.json"},
+            {"delete": "./response.json"}
+           ],
     context : [{
          text: 'Edytuj',
          icon: 'resources/icons/pencil.png',
@@ -50,20 +54,110 @@ Ext.define('Base.grid.DynamicGrid', {
         };
 
     },
+
+    onMask : function(msg){
+        var me = this;
+
+        if(!Ext.isObject(me.mask))
+            me.mask = new Ext.LoadMask(Ext.getBody(), {msg:msg});
+        else
+            me.mask.setLoading(msg);
+
+        me.mask.show();
+    },
+
+    unMask : function(){
+        var me = this;
+        me.mask.hide();
+    },
+
     onDelete : function(record,index){
         var me = this;
 
         Ext.MessageBox.confirm('Eliminar', 'Se eliminara &#191;Esta seguro?', 
                 function(btn) {
-                   if(btn=='yes') {
+                   if(btn=='yes')
+                   {
+                        me.fireEvent('deleting', me, record,index); 
+                        
+                        //status 1
+                        var $delete = me.findEventURL("delete");
+                        if($delete)
+                        {
+                            me.onMask("Eliminando...");
+                            me.ajaxRequest($delete.delete,"delete",$delete.params || {});
 
-                    me.fireEvent('eliminando', me, record); 
-                    me.getStore().removeAt(index);
+                            me.on("delete",function(json){
+                                if(json.status == 1)
+                                    me.store.removeAt(index);
+                            });
+                        }else
+                            me.store.removeAt(index);
 
                    }
+                    
+                   
               });
                  
     },
+
+
+    onSave : function(record,index){
+        var me = this;
+        var $save = me.findEventURL("save");
+        
+        me.fireEvent('saving', me, record,index); 
+
+        if($save)
+        {
+            me.onMask("Guardando...");
+            me.ajaxRequest($save.save,"save",$save.params || {});
+
+            me.on("save",function(json){
+                if(json.status == 1)
+                    me.store.insert(index,record)
+            });
+        }else
+            me.store.insert(index,record)
+
+    },
+
+    findEventURL : function(event){
+
+        var me       = this,
+            response = null;
+
+        Ext.iterate(me.url,function(url){
+            if(Ext.isDefined(url[event]))
+            {
+                response =  url;
+                return false;
+            }
+        });
+
+        return response;
+    },
+
+    ajaxRequest : function(url,event,params)
+    {
+        var me = this;
+
+
+        Ext.Ajax.request({
+            url: url,
+            params: params || {},
+            success: function(response){
+                var response = response.responseText;
+                var json = Ext.decode(response);
+
+                me.unMask();
+                me.fireEvent(event, json); 
+                Ext.Msg.alert('Status', json.message || "Error contacte al admon.");
+            }
+        });
+    },
+
+
     sortByKey :function (array, key) {
         return array.sort(function(a, b) {
             var x = a[key];
@@ -82,6 +176,14 @@ Ext.define('Base.grid.DynamicGrid', {
     initComponent: function() {
         
         var me = this;
+        var recordQuery = me.findEventURL("query");
+        
+        if(recordQuery)
+            me.urlQuery = recordQuery.query;
+        else
+            me.urlQuery = me.url;
+
+
 
         if(me.deleteRow)
             me.columns.push(me.removeColumn());
@@ -104,9 +206,9 @@ Ext.define('Base.grid.DynamicGrid', {
 
         me.features= [filters];
 
-        if (me.url == '' && me.data.length > 0) {
+        if (me.urlQuery == '' && me.data.length > 0) {
 
-            //Ext.Error.raise('url parameter is empty! You have to set proper url to get data form server.');
+            //Ext.Error.raise('urlQuery parameter is empty! You have to set proper urlQuery to get data form server.');
             me.data = me.data[0]
             var reconfig = me._reconfig(me.data);
 
@@ -124,9 +226,9 @@ Ext.define('Base.grid.DynamicGrid', {
             });
             
 
-        }else if (me.url == '' && me.data.length == 0) {
+        }else if (me.urlQuery == '' && me.data.length == 0) {
             
-            //Ext.Error.raise('url parameter is empty! You have to set proper url to get data form server.');
+            //Ext.Error.raise('urlQuery parameter is empty! You have to set proper urlQuery to get data form server.');
 
             Ext.applyIf(me, {
                 
@@ -143,9 +245,9 @@ Ext.define('Base.grid.DynamicGrid', {
             });
             
 
-        }else if(me.url == '')
+        }else if(me.urlQuery == '')
         {
-            //Ext.Error.raise('url parameter is empty! You have to set proper url to get data form server.');
+            //Ext.Error.raise('urlQuery parameter is empty! You have to set proper urlQuery to get data form server.');
             me.data = me.data[0]
             var reconfig = me._reconfig(me.data);
 
@@ -194,7 +296,7 @@ Ext.define('Base.grid.DynamicGrid', {
                         type: 'rest',
                         grid : me,
 
-                        url: me.url
+                        url: me.urlQuery
                     }
                 })
             });
