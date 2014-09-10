@@ -21,6 +21,10 @@ Ext.define('Base.grid.DynamicGrid', {
     url : '',
     context : null,
 
+    getSelection: function (){
+        return this.getSelectionModel().getSelection();
+    },
+
     removeColumn : function(){
 
         var me = this;

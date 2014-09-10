@@ -257,7 +257,7 @@ Ext.define('UCI.academic.Kardex', {
         me.on("itemcontextmenu",function(view, record, item, index, e){
 
         	var raw = record.raw;
-        	
+        	console.log(raw);
     		me.contextMenu.down("[itemId=inscribir_mo]").hide();
         });
 		
