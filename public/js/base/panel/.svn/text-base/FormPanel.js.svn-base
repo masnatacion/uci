@@ -1,0 +1,204 @@
+Ext.define('Base.panel.FormPanel', {
+extend			: 'Base.panel.Panel',
+esconderBotones         : false,
+//urlLoad		: '',
+params			: {},
+$autoLoad		: false,
+
+_onGuardar:function (){
+    
+        var me = this;
+        var form = me.getForm();
+        me.body.scrollTo('top',0);
+        var params = me._onGuardar.arguments[0]
+	
+        if (form.isValid()) {
+ 
+            me.fireEvent('guardar', me,me.getRecord(),true);
+
+            me.cargando(params[0] || "Guardando...");
+            me.fireEvent('guardandoDatos', me,me.getRecord());
+            
+            // Submit the Ajax request and handle the response
+            form.submit({
+                url : me.url,
+                submitEmptyText: false,
+            	success: function(form, action) {
+            	   me.listo();
+            	   me.fireEvent('datosGuardados', me,me.getRecord(),true,action);
+                   /*Refresca el GRID parent*/
+		   if(me.$parent)
+			me.$parent.store.reload();
+			   
+		   if(action.result.success =="false")
+		   me.error(action.result.msg);
+		   else
+                   me.onCancelar();
+            	
+            	},
+                failure: function(form, action) {
+                   me.listo();             
+                   me.error(action.result.msg);
+                   me.fireEvent('datosGuardados', me,me.getRecord(),false,action);
+                }
+            });
+        
+        }else 
+    	me.fireEvent('guardar', me,me.getRecord(),false);
+},
+
+onGuardar:function (){
+        this._onGuardar(this.onGuardar.arguments);
+}, 
+
+onCancelar:function (){
+                
+	var me = this;
+        
+        me._onCancelar();
+        
+        var win = me.up('window');
+        
+        if(win)
+                win.hide();
+         else
+                me.close();
+},
+
+_onCancelar:function (){
+	
+        var me = this;
+        me.getForm().reset();	
+	me.fireEvent('cancelar', this);
+},   
+  
+
+getBotones: function (){
+    return ['->',{
+            text	: 'Guardar',
+            icon        : './img/icons/disk.png',        
+            id		: "guardar"+this.id,
+            scope	: this,
+            handler     : this.onGuardar
+        },{
+            text	: 'Cancelar',
+            icon        : './img/icons/cancel.png',  
+            id		: "cancelar"+this.id,
+            scope	: this,
+            handler     : this.onCancelar
+        }];
+},
+
+cargarDatos:function(){
+    var me = this;            
+    var record = this.cargarDatos.arguments[0];	
+        
+    if(me.form)
+        me.form.reset();
+    
+    if(!Ext.isEmpty(record))
+    {
+        me.cargando();
+        
+    	if(record.length==1)
+    		record=record[0];
+    	
+    	if(!record.data)
+    		record= {"data": record };
+    	
+        me.listo();
+        me.fireEvent('datosCargados', me,me.getRecord(),"record");
+        me.loadRecord(record);
+        
+    }else
+        me.onLoad();
+
+},
+
+getDatos :function()
+{
+        return this.getRecord();
+},
+
+onRender:function(){
+	
+	var me = this;
+	
+	Base.panel.FormPanel.superclass.onRender.apply(this,arguments);
+	
+	if(!Ext.isEmpty(me.url) && me.$autoLoad)
+		me.cargarDatos();
+	
+},	
+
+onLoad:function()
+{
+	var me = this;
+        me.cargando();
+        
+	me.form.load({
+		url   : me.url,
+                method: 'GET',
+                success : function(form, action){
+                        me.listo();
+	        	var record = action.result;
+                        me.fireEvent('datosCargados', me,record,"load");
+	        	//me.loadRecord(record);
+	        	
+                },
+                failure: function(form, action) {
+                        me.listo();
+			/*
+                                Ext.Msg.show({
+                                           title   :'Aviso',
+                                           msg     : 'Ha ocurrido un problema. Intente nuevamente.',
+                                           buttons : Ext.Msg.OK,
+                                           icon    : Ext.MessageBox.WARNING
+                                });
+                                */
+	           
+	    }
+	});
+	
+},
+
+initComponent: function() {
+
+    var me = this;
+	
+    if(!Ext.isEmpty(me.params))
+         me.baseParams = me.params;
+
+    
+    if(!me.esconderBotones){
+    	
+        Ext.apply(me, {
+            buttons: me.getBotones()
+        });
+    }
+
+    Base.panel.FormPanel.superclass.initComponent.apply(me,arguments);
+
+    me.addEvents('datosCargados','guardandoDatos','datosGuardados','guardar','cancelar');
+    
+    
+	me.on("datosCargados",function(_me,record){
+	   var data = record.data;
+	   
+	   var fields = me.getForm().getFields().items;
+	   
+
+	   Ext.each(fields,function(name, index,data){
+		
+		var field = data[index];
+		field.fireEvent("datosForm",me,record);
+	    });
+	
+	
+	});
+	
+}
+
+
+
+});	

@@ -1,0 +1,196 @@
+Ext.define('Base.panel.Wizard', {
+    extend		: 'Base.panel.FormPanel',
+    width		: 500,
+    height		: 300,
+    layout		: 'card',
+    activeItem	: 0,
+    layoutConfig: { animate: true },
+    getNext	:function(){
+	
+    var wrap = arguments[0];
+    var items = this.getEnablesItems(),
+        index = Ext.Array.indexOf(items, this.getActiveItem());
+    return items[index + 1] || (wrap ? items[0] : false);	
+	
+	},
+	
+	getPrev	:function(){
+		
+	    var wrap = arguments[0];
+	    var items = this.getEnablesItems(),
+	        index = Ext.Array.indexOf(items, this.getActiveItem());
+	    return items[index - 1] || (wrap ? items[items.length - 1] : false);
+		
+	},
+	
+	getEnablesItems  :function(){
+		
+		var layout	= this.getLayout();
+		var items	= layout.getLayoutItems();
+	    
+		Ext.Array.each(items, function(name, index, allItems) {
+
+			 try{
+		    	if(items[index].isDisabled())			
+		        	Ext.Array.remove(items,items[index]);
+			 }catch(e){}
+
+			});
+		
+		return items;
+		
+		
+	},	
+	
+	setActiveItem:function(index)
+	{
+
+		this.getLayout().setActiveItem(index);
+		
+		this.siguienteDisable(!this.getNext());
+		this.anteriorDisable(!this.getPrev());
+	
+	},
+	getActiveItem:function(){
+		
+		return this.getLayout().getActiveItem();
+		
+	},
+    
+    navegar		:function(direccion){
+		
+
+		if(direccion=="prev")
+			this.getLayout().setActiveItem(this.getPrev());
+		else
+			this.getLayout().setActiveItem(this.getNext());
+			
+
+		this.siguienteDisable(!this.getNext());
+		this.anteriorDisable(!this.getPrev());
+		
+	
+    },
+    
+	onValidar: function(){
+	    
+	    var me = this;
+	    var layout=me.getLayout();
+	    var panel = layout.getActiveItem();
+	    
+	   
+	    
+	    if(Ext.isDefined(panel.getForm()))
+	    {
+		
+		 var form = panel.getForm();
+	    
+		if(form.isValid())
+		    return true;
+    		else
+		    return false;
+		
+	    }
+	    
+	    return true;
+	    
+	},
+    
+    onAnterior: function (){
+    	var layout=this.getLayout();
+    	this.navegar('prev');
+		this.fireEvent('anterior', this,layout,layout.getActiveItem());
+	},
+
+	onSiguiente: function (){
+		var me = this;
+		
+		if(me.onValidar())
+		{
+		    var layout=this.getLayout();
+		    this.navegar('next');
+		    this.fireEvent('siguiente', this,layout,layout.getActiveItem());
+		}   
+	},
+
+	siguienteDisable: function (disabled){
+		this.btnSiguiente.setDisabled(disabled);
+	},
+	
+	anteriorDisable: function (disabled){
+		this.btnAnterior.setDisabled(disabled);
+	},
+	
+	flechasDisable: function(disabled){
+		this.siguienteDisable(disabled);
+		this.anteriorDisable(disabled);
+	},
+	
+	guardarDisable: function(disabled){
+		this.btnGuardar.setDisabled(disabled);
+	},
+    
+    getBotones: function (){
+    return ['->',{
+        text	: "< Anterior",
+        scope	: this,
+        id		: "anterior"+this.id,
+        disabled: true,
+        handler : this.onAnterior
+    },{
+        text	:"Siguiente >",
+        id		:"siguiente"+this.id,
+        scope	: this,
+        handler : this.onSiguiente
+    },{
+        text	: 'Guardar',
+        id		: "guardar"+this.id,
+        scope	: this,
+		disabled: true,
+        handler : this.onGuardar
+    },{
+        text	: 'Cancelar',
+        id		: "cancelar"+this.id,
+        scope	: this,
+        handler : this.onCancelar
+    }];
+},  
+
+initComponent: function() {
+
+	var me = this;
+
+	
+	
+	
+	Base.Wizard.superclass.initComponent.apply(this,arguments);
+    this.addEvents('siguiente','anterior','cargandoDatos');
+
+
+    
+	
+},
+onRender:function(){
+	
+	var me = this;
+	
+	Base.Wizard.superclass.onRender.apply(this,arguments);
+
+	
+	
+	if(me.getParent())
+	{
+		me.getParent().on("show",function(_me,opt){
+			me.setActiveItem(0);
+		});
+	}
+
+	
+	
+    //guardar las referencias a variables internas
+    this.btnAnterior = Ext.getCmp("anterior"+this.id);
+    this.btnSiguiente = Ext.getCmp("siguiente"+this.id);
+	this.btnGuardar = Ext.getCmp("guardar"+this.id);
+}
+
+});

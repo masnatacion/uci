@@ -1,0 +1,162 @@
+head.js("./js/phpjs/array/in_array.js");
+
+Ext.apply(Ext.form.VTypes,{
+	    daterange: function(val, field) {
+	    var date = field.parseDate(val);
+	
+	    var start = field.up('form').down('#' + field.startDateField);
+	    var end = field.up('form').down('#' + field.endDateField);
+	    
+	    
+	    if (!date) {
+	        return false;
+	    }
+	    if (field.startDateField && (!this.dateRangeMax || (date.getTime() != this.dateRangeMax.getTime()))) {
+	       
+	        start.setMaxValue(date);
+	        start.validate();
+	        this.dateRangeMax = date;
+	    }
+	    else if (field.endDateField && (!this.dateRangeMin || (date.getTime() != this.dateRangeMin.getTime()))) {
+	        
+	        end.setMinValue(date);
+	        end.validate();
+	        this.dateRangeMin = date;
+	    }
+	    /*
+	     * Always return true since we're only using this vtype to set the
+	     * min/max allowed values (these are tested for after the vtype test)
+	     */
+	    return true;
+	},
+	
+	daterangeText: 'Start date must be less than end date',
+
+	capitalizeFirstWord:function(val,field) {
+
+            field.setRawValue(Ext.util.Format.capitalize(val));
+            return true;
+	},
+        
+	capitalize:function(words,field) {
+            var tags = new Base.ux.Tags();
+            words = words.toLowerCase();
+            var articulos = words.match(/\S{3,}/g),
+                newWord = []
+            
+            Ext.each(words.split(" "),function(v,n){
+
+                if(tags.isRoman(v))
+                    newWord.push(v.toUpperCase());
+                else if(in_array(v,articulos) || n == 0)
+                    newWord.push(Ext.util.Format.capitalize(v));
+                else
+                    newWord.push(v);
+            });
+         
+
+            field.setRawValue(newWord.join(" ").replace(/[.,;]/gi,''));
+            return true;
+	},
+        youtubeText:'URL no valida.',
+	youtube:function(val,field) {
+                        
+            var word = val;
+
+            var iframe = /(src)=["']([^"']*)["']/gi;
+            word = (word.match(iframe)) ? RegExp.$2 : word;
+
+            var id = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+            word = (word.match(id)) ? RegExp.$1 : "";
+            
+            if(Ext.isEmpty(word))
+              return false;
+            
+            
+            var youtube = "http://www.youtube.com/watch?v="+word;
+            field.fireEvent("youtube",field,youtube,word);
+            
+            field.setValue(youtube);
+            return true;
+	},
+    //lowercaseMask:/[-_.a-z0-9A-Z,]/,
+	lowercaseText:'Texto no permitido.',
+        lowercase:function(val,field) {
+            
+            var words = val.split(/\s/);
+                    for (i = 0; i < words.length; i++) {
+                            words[i] = Ext.util.Format.lowercase(words[i]);
+                    }
+            field.setRawValue(words.join(' '));
+            return true;
+            
+	},
+	numMask:/[\d-\$.]/,
+	num:function(val,field){
+		  			return val;
+	},
+
+	password: function(val, field){
+		   	  this.passwordText = 'Ocho caracteres m&iacute;nimo.';
+		      return(val.length >= 8);
+	},
+
+	vpassword: function(val, field) {
+	    if (field.initialPassField) {
+	        var pwd = field.up('form').down('#' + field.initialPassField);
+	        return (val == pwd.getValue());
+	    }
+	    return true;
+	},
+	
+	vpasswordText: 'Las contrase&#243as no coinciden',		
+	
+	nombreMask:/^[(a-zA-Z0-9 \u00e1\u00c1\u00e9\u00c9\u00ed\u00cd\u00f3\u00d3\u00fa\u00da\u00f1\u00d1.\,\/\-)]+$/,
+	nombreText:'Nombre no v&aacute;lido',
+	nombre:function(val,field){
+		var regExp=/^[(a-zA-Z0-9 \u00e1\u00c1\u00e9\u00c9\u00ed\u00cd\u00f3\u00d3\u00fa\u00da\u00f1\u00d1.\,\/\-)]+$/;
+		///^[a-zA-Z ][-_.a-zA-Z0-9 ]{0,30}$/;
+		return regExp.test(val);
+	},
+        descripcionMask:/^[(a-zA-Z0-9 \s\u00e1\u00c1\u00e9\u00c9\u00ed\u00cd\u00f3\u00d3\u00fa\u00da\u00f1\u00d1\u003F\u00BF.\,\"\'\;\:\/\-)]+$/,
+	descripcionText:'Descripci&oacute;n no v&aacute;lido',
+	descripcion:function(val,field){
+		var regExp=/^[(a-zA-Z0-9 \s\u00e1\u00c1\u00e9\u00c9\u00ed\u00cd\u00f3\u00d3\u00fa\u00da\u00f1\u00d1\u003F\u00BF.\,\"\'\;\:\/\-)]+$/;
+		///^[a-zA-Z ][-_.a-zA-Z0-9 ]{0,30}$/;
+		return regExp.test(val);
+	},
+        nombrepersonaMask:/^[(a-zA-Z \u00e1\u00c1\u00e9\u00c9\u00ed\u00cd\u00f3\u00d3\u00fa\u00da\u00f1\u00d1]+$/,
+	nombrepersonaText:'Nombre no v&aacute;lido',
+	nombrepersona:function(val,field){
+		var regExp=/^[(a-zA-Z \u00e1\u00c1\u00e9\u00c9\u00ed\u00cd\u00f3\u00d3\u00fa\u00da\u00f1\u00d1]+$/;
+		///^[a-zA-Z ][-_.a-zA-Z0-9 ]{0,30}$/;
+		return regExp.test(val);
+	},
+        
+        
+    adulto: function(val, field){  
+        try{  
+            var birth = field.getValue();  
+            var now = new Date();  
+            // The number of milliseconds in one year  
+            var ONE_YEAR = 1000 * 60 * 60 * 24 * 365;  
+                // Convert both dates to milliseconds  
+                var date1_ms = birth.getTime()  
+                var date2_ms = now.getTime()  
+                // Calculate the difference in milliseconds  
+                var difference_ms = Math.abs(date1_ms - date2_ms)  
+                // Convert back to years  
+                var years = difference_ms/ONE_YEAR;  
+            return years >= 8;  
+        }catch(e){  
+            return false;  
+        }  
+    },  
+    adultText: 'Eres menor de edad!', //mensaje de error  
+    adultMask: / /  //regexp para filtrar los caracteres permitidos          
+        
+});
+
+
+
+

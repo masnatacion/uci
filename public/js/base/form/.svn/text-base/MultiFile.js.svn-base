@@ -1,0 +1,361 @@
+Ext.define("Base.form.MultiFile", {
+    extend		: 'Base.form.File',
+    allowBlank		: false,
+    multiple		: true,
+    buttonOnly		: true,
+    urlUpload		: '',
+    urlLoad		: '',
+    files		: [],
+    store		: null,
+    uploader		: null,
+    params		: [],	
+    index  		: 0,
+    total		: 0,
+    _xhr		: null,
+    waiting    		: false,
+    sizeLimit		: 5243000,
+    allowedExtensions	:[],
+    
+	
+    initComponent: function() {
+	
+	var me = this;
+	    
+	if(Ext.isEmpty(me.store))
+	{
+	    // Creates the store
+	    me.store = Ext.create('Base.data.Store', {
+		    url: me.urlLoad,
+		    autoSync:false,
+		    fields: [
+			     {name:"id",		type:"string"},
+			     {name:"filename",		type:"string"},
+			     {name:"bytes_total",	type:"string"},
+			     {name:"bytes_uploaded",	type:"string"},
+			     {name:"percent",		type:"string"},
+			     {name:"status",		type:"string"},
+			     {name:"loaded",		type:"string"},
+			     {name:"is_url",		type:"string"},
+			     {name:"date",		type:"string"}
+			 ]	 
+			 
+	    });
+	}
+
+	me.store.load();
+	
+	Base.form.MultiFile.superclass.initComponent.apply(this,arguments);
+	me.addEvents('archivoCargado');
+		
+		
+	},
+
+    
+    getForm: function ()
+    {
+	return this.form;
+    },
+    
+    /**
+     * @private Event handler fired when the user selects a file.
+     */
+    onFileChange: function() {
+	var me = this;
+	var fileEl = me.fileInputEl.dom;
+	var files = fileEl.files;
+	
+	me.callParent();
+	
+	// Removes filenames from the store of the GridPanel
+	//me.clearFileList();
+	
+	if(files.length > 0) {
+		
+		
+	    for (var i=0; i<files.length; i++){
+		if ( !this._validateFile(files[i])){
+		    return;
+		}            
+	    }
+		
+		
+		for (i=0; i<files.length; i++,me.total++) {
+
+			
+		var name, size;
+		
+		if (files[i].value){
+		    // it is a file input            
+		    // get input value and remove path to normalize
+		    name = file.value.replace(/.*(\/|\\)/, "");
+		} else {
+		    // fix missing properties in Safari
+		    name = files[i].fileName != null ? files[i].fileName : files[i].name;
+		    size = files[i].fileSize != null ? files[i].fileSize : files[i].size;
+		}
+		
+			
+			
+			var dt = new Date();
+				dt= Ext.Date.format(dt, "j \\d\\e F \\d\\e\\l Y H:i:s");
+			
+			
+			var id = Math.floor(Math.random() * (Math.pow(10,10)))+"-store";
+			
+			me.store.insert(0,{
+					"id"			 : id,
+					"filename"		 : name,
+					"bytes_total"	 	 : me._formatSize(size),
+					"bytes_uploaded" 	 : "0",
+					"percent" 		 : "0",
+					"status"  		 : "Espera",
+					"loaded"  		 : "0",
+					"date"			 : dt
+				    });
+			
+			
+			me.files[id] = files[i];
+			
+			
+			
+		};  
+
+	    
+		if(!me.waiting)
+		    me._upload();
+		
+		
+	};
+
+	
+
+    },
+    
+    getXhrInstance: (function(){
+	var options = [function(){
+	    return new XMLHttpRequest();
+	}, function(){
+	    return new ActiveXObject('MSXML2.XMLHTTP.3.0');
+	}, function(){
+	    return new ActiveXObject('MSXML2.XMLHTTP');
+	}, function(){
+	    return new ActiveXObject('Microsoft.XMLHTTP');
+	}], i = 0,
+	    len = options.length,
+	    xhr;
+
+	for(; i < len; ++i) {
+	    try{
+		xhr = options[i];
+		xhr();
+		break;
+	    }catch(e){}
+	}
+	return xhr;
+    })(),
+    
+    obj2url : function(obj, temp, prefixDone){
+	var me=this;
+	
+	var uristrings = [],
+	    prefix = '&',
+	    add = function(nextObj, i){
+		var nextTemp = temp 
+		    ? (/\[\]$/.test(temp)) // prevent double-encoding
+		       ? temp
+		       : temp+'['+i+']'
+		    : i;
+		if ((nextTemp != 'undefined') && (i != 'undefined')) {  
+		    uristrings.push(
+			(typeof nextObj === 'object') 
+			    ? me.obj2url(nextObj, nextTemp, true)
+			    : (Object.prototype.toString.call(nextObj) === '[object Function]')
+				? encodeURIComponent(nextTemp) + '=' + encodeURIComponent(nextObj())
+				: encodeURIComponent(nextTemp) + '=' + encodeURIComponent(nextObj)                                                          
+		    );
+		}
+	    }; 
+
+	if (!prefixDone && temp) {
+	  prefix = (/\?/.test(temp)) ? (/\?$/.test(temp)) ? '' : '&' : '?';
+	  uristrings.push(temp);
+	  uristrings.push(me.obj2url(obj));
+	} else if ((Object.prototype.toString.call(obj) === '[object Array]') && (typeof obj != 'undefined') ) {
+	    // we wont use a for-in-loop on an array (performance)
+	    for (var i = 0, len = obj.length; i < len; ++i){
+		add(obj[i], i);
+	    }
+	} else if ((typeof obj != 'undefined') && (obj !== null) && (typeof obj === "object")){
+	    // for anything else but a scalar, we will use for-in-loop
+	    for (var i in obj){
+		add(obj[i], i);
+	    }
+	} else {
+	    uristrings.push(encodeURIComponent(temp) + '=' + encodeURIComponent(obj));
+	}
+
+	return uristrings.join(prefix)
+			 .replace(/^&/, '')
+			 .replace(/%20/g, '+'); 
+    },
+    
+
+    
+    getFaltan : function()
+    {
+	var count= 0;
+	var me = this;
+	
+	Ext.Array.each(me.store.data.items, function(record,index) {
+
+	    if(record.get("loaded")==="0" && !Ext.isEmpty(record.get("id")))
+		count++;
+	});
+	
+	return count;
+    },
+    
+    _getId : function()
+    {
+	var result= "";
+	var me = this;
+	
+	var items = Object.create(me.store.data.items);
+	
+	Ext.Array.each(items.reverse(), function(record,index) {
+
+	    if(record.get("loaded")==="0" && !Ext.isEmpty(record.get("id")))
+	    {
+		result= record.get("id");
+		return; // break here
+	    }
+	});
+	
+	return result;
+    },
+    
+    _upload : function()
+    {
+	var me = this;
+	
+	var id = me._getId();
+
+	if(me.getFaltan() > 0)
+	{	
+
+	    me.waiting=true;
+	    
+	    var data = me.store.getById(id+"");
+	    
+	    me.fireEvent('cargandoArchivo', me, data);
+	    
+	    me._xhr = me.getXhrInstance();
+	    var xhr = me._xhr,
+	    formData = new FormData();
+
+	    formData.append('file', me.files[id]);
+
+	    xhr.upload.onprogress = function(e){
+		    
+		if (e.lengthComputable){
+		    data.set("bytes_uploaded",me._formatSize(e.loaded));
+		    data.set("percent",Math.round(e.loaded / e.total * 100));
+		    me.fireEvent('cargandoArchivo', me, data);
+		}
+	    };
+
+	    xhr.onreadystatechange = function(){            
+		if (xhr.readyState == 4){
+		    
+		    var response = xhr.responseText;
+		    var json = Ext.JSON.decode(response);
+			    
+			    if(!Ext.isEmpty(json.id))
+				data.set("id",json.id);
+				
+			    data.set("bytes_uploaded",data.get("bytes_total"));	
+			    data.set("percent","100");
+			    data.set("status","Completado");
+			    data.set("loaded","1");
+			    
+		    me.store.sync();	    
+		    me.waiting=false;
+		     
+		    me.fireEvent('archivoCargado', me, data,response);
+
+		    
+		    if(me.getFaltan() > 0)
+		    {
+			me._upload(); 
+		    }
+		      
+	       
+		}
+		
+
+	    };
+	    var params = {};
+	    
+	    Ext.apply(params,data.data);		
+	    params['file'] = data.get('filename');		
+	    var queryString = me.obj2url(params, me.urlUpload);
+	    
+	    xhr.open('POST', queryString,true);
+	    xhr.send(formData);
+
+	}
+	
+    },
+    
+    getXhr : function()
+    {
+	return this._xhr;
+    },
+    
+    setCancel: function(record){
+	
+	
+	if(!record)
+		return;
+	
+	var me = this;
+	//me.index+=1;
+	
+
+	var index = me.getStore().indexOf(record);
+	me.getStore().removeAt(index);
+	
+	me.files[id] = null;
+	
+	if(me.index==id)
+	{
+		if(me.getXhr())
+		me.getXhr().abort();
+		
+	}	
+    },
+
+    
+    cancelAll: function()
+    {
+	var me = this;
+	
+	me.waiting=false;
+	me.files = [];
+	//me.store.removeAll();
+	
+	if(me.getXhr())
+		me.getXhr().abort();
+	
+	
+    },
+   
+
+    getStore : function()
+    {
+	var me = this;
+		return me.store;
+	}
+    
+});
+

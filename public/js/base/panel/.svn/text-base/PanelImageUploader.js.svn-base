@@ -1,0 +1,199 @@
+Ext.define('Base.panel.PanelImageUploader', {
+    extend          : "Base.panel.Panel",
+    view            : {},
+    file            : {},
+    setUrl          : function(url){
+                
+                var me = this;
+                me.store.url = url;
+                me.$url = url;
+                
+                var proxy =  {
+                    type: 'ajax',
+                    url : !Ext.isObject(me.$url) ? me.$url: null,
+                    api : Ext.isObject(me.$url) ? me.$url: null,
+                    reader: {
+                        type		: 'json',
+                        root		: 'results',
+                        totalProperty	: 'total',
+                        successProperty     : 'success'
+                    }
+                };
+                
+                me._file.urlUpload = me.store.url.upload;
+                me.store.setProxy(proxy);
+                
+                
+    }, 
+    initComponent   : function (){
+        
+        var me = this;
+        
+                // Creates the store
+                me.store = Ext.create('Base.data.Store', {
+                        url: me.$url,
+                        autoSync:false,
+                        fields: [
+                                 {name:"id",			type:"string"},
+                                 {name:"filename",		type:"string"},
+                                 {name:"bytes_total",		type:"string"},
+                                 {name:"bytes_uploaded",	type:"string"},
+                                 {name:"percent",		type:"string"},
+                                 {name:"status",		type:"string"},
+                                 {name:"loaded",		type:"string"},
+                                 {name:"date",			type:"string"}
+                             ]	 
+                             
+                });
+                
+                
+        var view = me._view = Ext.create('Base.view.View', Ext.apply({
+            itemId : 'view',
+            height : 350,
+            url    : me.store.url,
+            store  : me.store,
+            /*
+            fields: [
+                       'id',
+                       'imagen_k',
+                       'nombre',
+                       'percent'
+                     ],
+             */        
+            getTb  : function(){            
+        
+                var _me  = this;
+                
+                var file = me._file =  Ext.create('Base.form.MultiFile',Ext.apply({
+                        name		: 'file[]',
+                        store           : me.store,
+                        //urlLoad		: me.$url,
+                        urlUpload	: me.store.url.upload,
+                        allowBlank      : true,
+                        params		: {},
+                        width           : 68,
+                        height          : 50,
+                        buttonText	: 'Nuevo',
+                        itemId		: 'file',
+                        sizeLimit	: 1243000,
+                        allowedExtensions:["jpeg","jpg","gif","png"],
+                        buttonConfig:{
+                                        iconAlign : 'top',
+                                        icon	  : './img/icons24/Add.png',
+                                        cls	  : 'x-btn-as-arrow',
+                                        scale	  : 'medium'
+                                    }
+                },_me.file));
+                         
+                       
+           /*
+                file.store.on("add",function(store, records, index, eOpts){
+
+
+                   Ext.each(records,function(item, index){
+
+                        _me.store.insert(0,{
+                            'id'        : item.get("id"),
+                            'imagen_k'  : item.get("id"),
+                            'nombre'    : item.get("filename"),
+                            'percent'   : item.get("percent") 
+                        });
+
+                    });
+                    
+                });
+                
+                file.store.on("update",function(record, operation, eOpts ){
+                        
+                        var records = record.data.items;
+                        Ext.each(records,function(item, index){
+                            var record = item.data;
+                            var data = _me.store.getById(record.id);
+
+                            data.set("percent",record.percent);
+                        });
+                });
+         */
+                var buttons=[ 
+                       {
+                            xtype	: 'buttongroup',
+                            columns	: 3,
+                            title	: 'Imagen',
+                            defaults: {
+                                          iconAlign	: 'top',
+                                          cls		: 'x-btn-as-arrow',
+                                          scale		: 'medium'
+                            },
+                            items	: [
+                                            file,
+                                            {         
+                                                text	: 'Eliminar',
+                                                icon	: './img/icons24/Delete.png',
+                                                handler: function()
+                                                {
+                                                      _me.onEliminar();
+                                                }
+                                            }
+                                          ]
+                        }
+        
+                       ]; 
+        
+        
+                        return buttons;
+             
+            },
+
+
+            
+            view: {
+                    tpl: [
+                        '<tpl for=".">',
+                            '<div class="thumb-wrap" id="{id}">',
+                                '<div class="thumb">',
+                                '<tpl if="this.isLoad(percent)">',
+                                       '<img src="./admin/imagen/{id}/100x100" title="{filename}">',
+                                   '</tpl>',
+                                    '<tpl if="this.isLoading(percent)">',
+                                        '<div class="loading">',
+                                            '<div class="subiendo">Subiendo...</div>',
+                                            '<div class="bar"> ',
+                                                '<div class="porcentaje"style="width:{percent}%"></div>',
+                                            '</div>',
+                                        '</div>',
+                                    '</tpl>',
+                                    '<tpl if="this.isWait(percent)">',
+                                        '<div class="loading">',
+                                            '<div class="espera">En Espera</div>',
+                                        '</div>',
+                                    '</tpl>',
+                                '</div>',
+                                '<span><b>{filename}</b></span>',
+                            '</div>',
+                        '</tpl>',
+                        '<div class="x-clear"></div>',
+                            {
+                                // XTemplate configuration:
+                                disableFormats: true,
+                                // member functions:
+                                isWait: function(percent){
+                                   return !Ext.isEmpty(percent) && percent == 0;
+                                },
+                                isLoading: function(percent){
+                                   return !Ext.isEmpty(percent) && percent < 100 && percent > 0;
+                                },
+                                isLoad: function(percent){
+                                   return percent == 100 || Ext.isEmpty(percent);
+                                }
+                            }
+                    ]
+            }
+        },me.view));
+        
+
+        me.items = [view];
+
+
+        Base.panel.PanelImageUploader.superclass.initComponent.apply(this,arguments);
+    }
+});

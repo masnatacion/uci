@@ -1,0 +1,592 @@
+Ext.define("Base.PanelView", {
+	        extend          : 'Base.Panel',
+                urlUpload       :'',
+                width           : 550,
+	        params		: {},
+		//url		: '',
+                urlLoad		: 'index.php/admin/eventos/imagenes',
+        	fields	 	: [],
+        	data	 	: [],
+                pageSize	: 50,
+                load		: false,
+                autoScroll      : true,
+                pageSize	: 50,
+                //layout		: 'fit',
+                tpl             : [],
+                _view           : '',    
+                esconderBotones :true,
+                getView         : function()
+                {
+                    return this._view;
+                },
+                
+                getStore: function()
+                {
+                  return this.store;              
+                },
+                
+                onRender:function(){
+                        
+                        var me = this;
+                        
+                        Base.PanelView.superclass.onRender.apply(this,arguments);
+                        
+ 		if(!Ext.isEmpty(me.urlLoad) && me.load)
+                {
+                               
+			me.store.load({
+                                         scope   : this,
+                                         callback: function(records, operation, success) {
+                                                    me.listo();
+                                                }
+                                });
+                        
+                        me.cargando(); 
+                }
+                
+                    
+                                if(me.getParent()){
+                                
+                                                me.getParent().on({
+                                                                destroy:function(){
+                                                                                if(Ext.getCmp("tip"+me.id))
+                                                                                Ext.getCmp("tip"+me.id).destroy();
+                                                                },
+                                                                
+                                                                hide:function(){
+                                                                                if(Ext.getCmp("tip"+me.id))
+                                                                                Ext.getCmp("tip"+me.id).destroy();
+                                                                }                                 
+                                                });
+
+                                }       
+                },                
+                
+		initComponent	: function (){
+		
+                    var me = this; 
+                    
+                    var data={
+                                fields	 : me.fields,
+                                data	 : me.data,
+                                pageSize : me.pageSize,
+                                url      : me.urlLoad
+                            };
+                    
+                    
+                    if(Ext.isEmpty(me.store))
+                    me.store=Ext.create('Base.Store',data);	
+    
+    
+
+                    
+                     var view = me._view =  Ext.create('Ext.view.View', {
+                                store           : me.store,
+                                loadingText     : 'Cargando...',
+                               // maskOnDisable   : false,
+                                //loadMask        : true,
+                                singleSelect    : true,
+                                overItemCls     : 'x-view-over',
+                                itemSelector    : 'div.thumb-wrap',
+                                trackOver       : true,
+                                tpl             : me.tpl
+                        });
+                    
+                    
+                    me.items=view;
+                    
+                    
+		me.bbar=me.getBb();
+
+		
+		
+		
+		if(me.getFiltros())
+		{
+                                
+                        
+                        
+			var panel_tbar = Ext.create('Ext.form.FormPanel',{
+		  	frame	: true,
+                	border	: false,
+			id	: "tbar"+me.id,
+		        items:[
+		        	       
+		                    {
+		                        xtype: 'fieldcontainer',
+		                        layout: 'hbox',
+		                        items: [
+						me._getTb(),
+							    {
+							        xtype		: 'buttongroup',
+							        columns		: 1,
+							        id	    	: "buscar"+me.id,
+							        title		: 'Filtros',
+							        defaults: {
+								  		iconAlign	: 'top',
+								      		cls		: 'x-btn-as-arrow',
+								      		scale		: 'large'
+								     	  },
+							        items		: [{
+									            text	: 'Buscar',       
+									            icon	: '/masnatacion/img/search.png',
+		
+									            handler	: function(){
+                                                                                                me.onFiltros();                                                	
+							   			            } 
+							   			        }]
+								}
+		                        ]
+		                    }
+		        	       
+
+		        	]
+		        });
+				
+				
+				
+		var panel_filtos = Ext.create('Ext.form.FormPanel',{
+			bodyPadding	: 5,
+			frame  		: true,
+	                border 		: false,
+		        id	   	: "filtos"+me.id,
+		        items  		: [me.getFiltros()],
+            		buttons		:[
+			{
+				text	: "Buscar",
+				iconCls	: "search",
+				scope	: me,
+				handler: function(){
+            			
+                                                me.onBuscar();
+
+            			}
+			},{
+			    text:"Limpiar",
+			    iconCls:"limpiar",
+                            scope:me,
+			    handler: me.onLimpiar
+			},{
+			    text:"Cancelar",
+			    iconCls:"cancel",
+			    scope:me,
+			    handler: function (){
+    
+				    me.onCancelar();
+			    }
+			}]
+			    });
+				 
+				 
+				
+		         
+		      var card  =Ext.create('Ext.form.FormPanel',{
+		            layout		: 'card',
+		            id	   		: "card"+me.id,
+		            height		: 95,
+		            activeItem		: 0,
+		            border		: 0,
+		        	items:[
+		        	       	panel_tbar,
+		        	       	panel_filtos
+		        	       ] 
+		        }); 
+		        
+		        
+		        me.getTb = function(){ return card; };
+		        
+		};                    
+                    
+                    
+                    
+		
+		Base.PanelView.superclass.initComponent.apply(this,arguments);
+	},
+    
+    
+    
+    tieneFiltro: function (){		
+    	
+    	var me = this;
+    	
+    	var filtro = Ext.getCmp("filtos"+me.id).getValues();
+
+		for(var i in filtro){			
+			if(filtro[i]){
+				return ;
+			}
+		}		
+    },
+    
+    onLimpiar:function(){
+                
+        var me = this;        
+    	Ext.getCmp('filtos'+this.id).getForm().reset();
+        me.store.loadPage(1);
+    },
+    
+    onBuscar: function()
+    {
+                var me = this;
+                
+                var panel_filtros = Ext.getCmp("filtos"+me.id);
+                
+                var json=panel_filtros.getValues();
+                me.store.load({params: json});
+
+    },
+    
+    onFiltros: function()
+    {
+       var me = this;
+       
+    	var card = Ext.getCmp('card'+this.id);
+    	card.getLayout().setActiveItem(1);
+                
+		var tip = Ext.getCmp("tip"+me.id);
+
+		if(tip)
+		tip.destroy();       
+    },
+    
+    onCancelar: function(){
+    	
+    	var me = this;
+    	
+    	var card = Ext.getCmp('card'+this.id);
+    	card.getLayout().setActiveItem(0);
+    	
+    	me.showToolTip();
+
+    },
+    
+    
+    showToolTip:function()
+    {
+    	var me = this;
+    	
+    	if(me.tieneFiltro())
+    	{
+    	
+				var tip = Ext.getCmp("tip"+me.id);
+				
+				if(!tip)
+				{	
+					var b_buscar = Ext.getCmp("buscar"+me.id);
+		    		
+					var config = {    
+							//title	: this.getFieldLabel(),                
+						anchor		: 'bottom',
+						//width	: 415,
+						html		: 'Recuerde que estan activados <br>algunos filtros de b&uacute;squeda',
+						autoHide	: false,
+						id	    	: "tip"+me.id,
+						focusOnToFront 	: true,
+						target		: b_buscar.el,
+						//closable: true,
+						style 		: 'background:#ffc;padding:10px;cursor:pointer;',
+                                                listeners: {
+                                                                
+                                                    click: {
+                                                        element: 'el', //bind to the underlying el property on the panel
+                                                        fn: function(){
+                                                                me.onFiltros();
+                                                        }
+                                                    }
+                                                }   
+			    		};
+		    		
+					var tip = Ext.create('Ext.tip.ToolTip', config);	
+					tip.show();
+					
+					
+					tip.on({
+						'hide'	 : function(){ tip.show() }
+					});
+					
+				}else
+					tip.show();
+    	}		
+		
+    },
+ 
+	_xhr: function(params)
+	{
+		var me = this;
+		
+		if(me.urlUpdate)
+		{
+			Ext.Ajax.request({
+				method:'GET',
+			    url: me.urlUpdate,
+			    params: params,
+			    success: function(response){
+			        var resp = response.responseText;
+			        
+			        
+			        me.fireEvent('datosActualizados', me, params , resp);
+			    }
+			});	
+		}
+	},
+	
+	
+	onActualizar: function()
+	{
+		var me = this;
+		var record = me.onActualizar.arguments[0] ||  me.store;
+		
+		
+		if(me.getStore().data.items && me.getStore().getCount() == 0)
+			return;
+			
+	
+		if (!record) {
+			me.error("Seleccione una fila..");
+			return;
+		}
+		
+		if(me.urlUpdate)
+		{
+
+			var json = Ext.ux.recordJson(record);
+				var params = {
+						json : json,
+						actualizar : true
+						}
+				me._xhr(params);				
+
+		}
+		
+		me.fireEvent('actualizando', me, record);
+	}, 
+    
+	onEliminarTodo: function()
+	{
+		
+		var me = this;
+		me._onEliminarTodo();
+	
+	},	
+	
+	_onEliminarTodo: function()
+	{
+		
+		var me = this;
+		me.onEliminar(me.getStore());
+	
+	},
+	
+	onEliminar :function()
+	{
+		var me = this;
+		this._onEliminar(me.onEliminar.arguments[0]);
+	},
+	
+	_onEliminar : function()
+	{
+
+		var me = this;	
+		
+		var record = me._onEliminar.arguments[0] ||  me.getSelection()[0];
+		var showMsg = true;
+
+		
+		if(!Ext.isEmpty(me._onEliminar.arguments[1]))
+			showMsg =  me._onEliminar.arguments[1];
+		
+		
+		if(me.getStore().data.items && me.getStore().getCount() == 0)
+			return;
+		
+		if (!record) {
+			me.error("Seleccione una fila..");
+			return;
+		}
+		
+			
+		function _eliminar()
+		{
+			
+
+			
+			if(me.urlUpdate)
+			{
+								
+				var json = Ext.ux.recordJson(record);
+	
+					var params = {
+							json : json,
+							eliminar : true
+						     };
+									      
+					me._xhr(params);					
+			}
+								
+			
+			
+			if(Ext.isDefined(record.data))
+			{
+				
+					if(Ext.isDefined(record.data))
+					{
+						if(Ext.isDefined(record.data.items))
+							me.getStore().removeAll();
+						else{	
+							var index = me.getStore().indexOf(record);
+							me.getStore().removeAt(index);
+						}
+						
+					}
+			}
+				
+			
+			
+			
+			me.fireEvent('eliminando', me, record);			
+		}
+		
+		
+		
+			
+			
+		if(showMsg)
+		{
+			var fila="";
+                        
+
+			if(record.get("nombre"))
+				fila = "el <B>"+record.get("nombre")+"</B>";
+			
+			Ext.MessageBox.confirm('Advertencia', 'Se va ha eliminar '+fila+'. &#191;Esta Seguro?', 
+				    function(btn) {
+				       if(btn=='yes') {
+						_eliminar(); 
+				       }
+				  });			
+		}else
+			_eliminar();
+		
+
+		
+
+
+	},    
+    
+    focusRow:function()
+    {
+	var me = this;
+        
+        var index = (me.store.getCount()-1);
+        
+        if(Ext.isDefined(me.focusRow.arguments[0]))
+                index = me.focusRow.arguments[0];
+        
+	me.getView().getSelectionModel().select(index);
+    },    
+    
+    find:function(fieldName,value){
+    	return this.store.find(fieldName,value);
+    },
+    
+    reload: function (d){
+        this.store.reload(d);
+    },
+
+    addRecords : function(records){
+        this.store.add(records);
+    },
+    
+    removeAt : function(index){
+    	this.store.removeAt(index);
+    },
+
+    removeAll : function(){
+    	this.store.removeAll();
+    },
+    
+    getCount : function(){        
+    	return this.store.getCount();    
+    },
+
+    getAt : function(index){
+    	return this.store.getAt(index);
+    },
+    
+    load : function(options) {
+        this.store.load(options);
+    },
+      
+    loadData : function(o, append){
+    	this.store.loadData(o, append);
+    },
+
+    getSelection: function (){
+        return this.getView().getSelectionModel().getSelection();
+    },
+    
+ 
+    selectFirstRow : function(){
+    	this.selModel.selectFirstRow();    
+    },    
+    
+   
+    selectLastRow : function(keepExisting){ 
+    	this.selModel.selectLastRow(keepExisting);
+    },    
+    
+     
+    selectNext : function(keepExisting){  
+    	return this.selModel.selectNext(keepExisting);
+    },    
+    
+  
+    selectPrevious : function(keepExisting){  
+    	return this.selModel.selectPrevious(keepExisting);
+    },    
+    
+   
+    hasNext : function(){   
+    	return this.selModel.hasNext();
+    },    
+    
+   
+    hasPrevious : function(){   
+    	return this.selModel.hasPrevious();    
+    },
+    
+   
+    select: function(index){
+    	this.getView().getSelectionModel().select(index);
+    } ,
+    
+   
+    hasSelection : function(){        
+    	return this.selModel.hasSelection();    
+    },   
+    
+    _getTb		:function()
+    {
+    	return ;
+    },
+    
+    getFiltros:function(){
+    	return ;
+    },
+    
+     getBb		: function(){
+        	
+    	var me = this;
+    	
+    	return Ext.create('Ext.PagingToolbar', {
+            pageSize	: me.pageSize,
+            store		: me.store,
+            displayInfo	: true,
+            displayMsg	: "Desplegando datos {0} - {1} de {2}",
+            emptyMsg	: "No hay datos que mostrar",
+            plugins		: Ext.create('Ext.ux.ProgressBarPager')
+        });
+    }         
+});
+
+

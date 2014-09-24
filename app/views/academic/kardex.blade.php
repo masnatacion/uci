@@ -3,8 +3,8 @@
 @section('content')
 
 
-    <link rel="stylesheet" type="text/css" href="./js/extjs/src/ux/grid/feature/resources/MultiGroupingSummary.css" /> 
-    <link rel="stylesheet" type="text/css" href="./js/extjs/src/ux/grid/plugin/resources/GroupingPanel.css" /> 
+<link rel="stylesheet" type="text/css" href="./js/extjs/src/ux/grid/feature/resources/MultiGroupingSummary.css" /> 
+<link rel="stylesheet" type="text/css" href="./js/extjs/src/ux/grid/plugin/resources/GroupingPanel.css" /> 
 <!-- Ext JS Files -->
 <link rel="stylesheet" href="./js/extjs/resources/ext-theme-neptune/ext-theme-neptune-all.css"/>
 <script type="text/javascript" src="./js/extjs/ext-all-debug.js"></script>
@@ -36,7 +36,7 @@
 		        var me = this;
 
 
-		        var grid = Ext.create('UCI.academic.Kardex');
+		        grid = Ext.create('UCI.academic.kardex.GridPanel');
 
 				var search = Ext.create('Ext.form.field.Text',{
 					style : "margin-right:1em",

@@ -1,0 +1,139 @@
+Ext.define("Base.form.File", {
+    extend		: 'Ext.form.field.File',
+    allowBlank		: false,
+    sizeLimit		: 5243000,
+    allowedExtensions	:[],
+    
+    messages: {
+	typeError	: "<b>{file}</b> tiene una extenci&#243;n invalida.<br> Solo se permiten: <b>{extensions}</b> .",
+	sizeError	: "<b>{file}</b> es muy grande.<br> El tama&#241;o maximo es de <b> {sizeLimit}</b>.",
+	emptyError	: "<b>{file}</b> esta vacio, por favor intenta otra vez.",
+	onLeave		: "El archivo ya fue cargado."            
+    },
+    showMessage: function(message){
+	Ext.Msg.alert('Advertencia', message);
+    }, 
+
+    _error: function(code, fileName){
+	
+	var me = this;
+	
+	var message = me.messages[code];        
+	function r(name, replacement){ message = message.replace(name, replacement); }
+	    
+	r('{file}', me._formatFileName(fileName));   
+	r('{extensions}', me.allowedExtensions.join(', '));
+	r('{sizeLimit}', me._formatSize(me.sizeLimit));
+       
+	
+	me.showMessage(message);                
+},
+_formatFileName: function(name){
+    if (name.length > 33){
+        name = name.slice(0, 19) + '...' + name.slice(-13);    
+    }
+    return name;
+},
+
+    _formatSize: function(bytes){
+	var i = -1;                                    
+	do {
+	    bytes = bytes / 1024;
+	    i++;  
+	} while (bytes > 99);
+	
+	return Math.max(bytes, 0.1).toFixed(1) + ['kB', 'MB', 'GB', 'TB', 'PB', 'EB'][i];          
+    },
+    
+    _isAllowedExtension: function(fileName){
+		
+		var me = this;
+	
+	var ext = (-1 !== fileName.indexOf('.')) ? fileName.replace(/.*[.]/, '').toLowerCase() : '';
+	var allowed = me.allowedExtensions;
+	
+	if (!allowed.length){return true;}        
+	
+	for (var i=0; i<allowed.length; i++){
+	    if (allowed[i].toLowerCase() == ext){ return true;}    
+	}
+	
+	return false;
+	},
+        
+    _validateFile: function(file){
+		
+		var me = this;
+		
+	var name, size;
+	
+	if (file.value){
+	    // it is a file input            
+	    // get input value and remove path to normalize
+	    name = file.value.replace(/.*(\/|\\)/, "");
+	} else {
+	    // fix missing properties in Safari
+	    name = file.fileName != null ? file.fileName : file.name;
+	    size = file.fileSize != null ? file.fileSize : file.size;
+	}
+		    
+	if (! this._isAllowedExtension(name)){            
+	    me._error('typeError', name);
+	    return false;
+	    
+	} else if (size === 0){            
+	    me._error('emptyError', name);
+	    return false;
+						     
+	} else if (size && me.sizeLimit && size > me.sizeLimit){            
+	    me._error('sizeError', name);
+	    return false;
+			
+	} 
+	
+	return true;                
+    },
+    
+    /**
+     * @private Event handler fired when the user selects a file.
+     */
+    onFileChange: function(button, e, value) {
+	var me = this;
+	var fileEl = me.fileInputEl.dom;
+	var files = fileEl.files;
+	
+	me.callParent();
+	
+	// Removes filenames from the store of the GridPanel
+	//me.clearFileList();
+	
+	if(files.length > 0) {
+
+	    for (var i=0; i<files.length; i++){
+		if ( !this._validateFile(files[i])){
+		    return;
+		}            
+	    }
+		
+                        for (i=0; i<files.length; i++,me.total++) {
+                        
+                        var name, size;
+                        
+                        if (files[i].value){
+                            // it is a file input            
+                            // get input value and remove path to normalize
+                            name = file.value.replace(/.*(\/|\\)/, "");
+                        } else {
+                            // fix missing properties in Safari
+                            name = files[i].fileName != null ? files[i].fileName : files[i].name;
+                            size = files[i].fileSize != null ? files[i].fileSize : files[i].size;
+                        }
+                        }
+		
+	};
+
+        this.lastValue = null; // force change event to get fired even if the user selects a file with the same name
+        Ext.form.field.File.superclass.setValue.call(this, value);
+
+    }
+});

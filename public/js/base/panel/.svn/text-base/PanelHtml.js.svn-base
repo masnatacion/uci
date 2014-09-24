@@ -1,0 +1,69 @@
+Ext.define("Base.PanelHtml", {
+	        extend: 'Base.FormPanel',
+                width           : 550,
+	        params		: {},
+		urlLoad		: '',
+		urlUpload	: '',
+                esconderBotones :true,
+		initComponent	: function (){
+		
+		var me = this; 
+		
+			var html = Ext.create('Ext.form.HtmlEditor', {
+                                    height:250
+			});
+		
+		    var input =   Ext.create('Base.MultiFile',{
+  		    	name		: 'file[]', 
+  		    	width		: 70,
+  		    	params		: me.params,
+  		    	urlLoad		: me.urlLoad,
+  		    	urlUpload	: me.urlUpload,
+  		    	buttonText	: 'Imagen',
+  		    	buttonOnly	: true,
+  		    	itemId		: 'file',
+                        sizeLimit	: 1243000,
+                        allowedExtensions :["gif","jpg","jpeg","png"],
+  		    	buttonConfig:{ icon	: '/masnatacion/img/picture.png' }
+      		});
+		    
+		    
+                me.getTb =function()
+                {
+		    	var buttons=[
+					            {
+					                 xtype		: 'buttongroup',
+					                 columns	: 2,
+					                 title		: 'Agregar',
+					                 defaults: {
+					         	    iconAlign	: 'top',
+					               	    cls		: 'x-btn-as-arrow',
+					               	    scale	: 'large'
+					              	  }, 
+					                 items		: [
+                                                                            input,
+                                                                             {           
+                                                                                    text : 'Guardar',
+                                                                                    icon : '/masnatacion/img/save.png',
+                                                                                    handler:function(){
+                                                                                                
+                                                                                         me.onEnlace();
+                                                                                                }
+                                                                             }
+
+					      		                 ]
+					             }		    	             
+		    	             
+		    	             ];
+		    	
+		    	return buttons;                        
+                };    
+		
+	
+		    
+		    me.items=[html];
+		
+		
+		Base.PanelHtml.superclass.initComponent.apply(this,arguments);
+	}
+});   

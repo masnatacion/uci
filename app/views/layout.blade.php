@@ -34,7 +34,6 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 -->
     <link rel="stylesheet" href="{{ asset('css/stylus.css?v=0.0.3') }}">
-    <link rel="stylesheet" href="./css/vendor/responsive-tables.css">
 
     <script src="{{ asset('js/vendor/modernizr.js') }}"></script>
     <script src="js/vendor/Chart.min.js"></script>

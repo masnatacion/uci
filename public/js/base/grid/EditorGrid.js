@@ -1,7 +1,8 @@
 Ext.define('Base.grid.EditorGrid', {
 	extend		: 'Base.grid.DynamicGrid',
 	//selType		: 'cellmodel',
-	editor 		: true,
+	editor 		  : true,
+	columnsToEdit : [],
 	selModel: {
 	     selType: 'cellmodel'
 	},
@@ -27,8 +28,18 @@ Ext.define('Base.grid.EditorGrid', {
 		{
 			// me.HeaderFilters = Ext.create('Ext.ux.grid.plugin.HeaderFilters');
 			// me.plugins.push(me.HeaderFilters);
-
 		}
+
+		if(me.columnsToEdit.length > 0)
+		{
+	        me.on("beforeedit",function(editor, event, opts){
+
+	        	if(me.columnsToEdit.indexOf(event.column.dataIndex) == -1)
+	        		return false;
+	            
+	        });
+		}
+
 
 		Base.grid.EditorGrid.superclass.initComponent.apply(this,arguments);	
 	},

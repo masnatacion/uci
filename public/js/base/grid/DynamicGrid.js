@@ -19,6 +19,7 @@ Ext.define('Base.grid.DynamicGrid', {
     // URL used for request to the server. Required
     //url: '',
     url : '',
+    plugins : [],
     context : null,
 
     getSelection: function (){
@@ -163,6 +164,21 @@ Ext.define('Base.grid.DynamicGrid', {
         });
     },
 
+    sortByKeyDesc :function (array, key) {
+        return array.sort(function(a, b) {
+            var x = a[key];
+            var y = b[key];
+
+            if (typeof x == "string")
+            {
+                x = x.toLowerCase(); 
+                y = y.toLowerCase();
+            }
+
+            return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+        });
+    },
+
     initComponent: function() {
         
         var me = this;
@@ -199,10 +215,15 @@ Ext.define('Base.grid.DynamicGrid', {
         if (me.urlQuery == '' && me.data.length > 0) {
 
             //Ext.Error.raise('urlQuery parameter is empty! You have to set proper urlQuery to get data form server.');
-            me.data = me.data[0]
+            
+            if(Ext.isDefined(me.data.data))
+                me.data = me.data[0];
+            else
+                me.data.data = me.data;
+
             var reconfig = me._reconfig(me.data);
 
-            Ext.applyIf(me, {
+            Ext.apply(me, {
                 columns: reconfig.columns,
                 forceFit: true,
                 store: Ext.create('Ext.data.Store', {
@@ -211,16 +232,17 @@ Ext.define('Base.grid.DynamicGrid', {
                 })
             });
 
-            me.on("afterrender",function(){
-                me.store.removeAt(0);
-            });
+            
+            // me.on("afterrender",function(){
+            //     me.store.removeAt(0);
+            // });
             
 
         }else if (me.urlQuery == '' && me.data.length == 0) {
             
             //Ext.Error.raise('urlQuery parameter is empty! You have to set proper urlQuery to get data form server.');
 
-            Ext.applyIf(me, {
+            Ext.apply(me, {
                 
                 forceFit: true,
                 store: Ext.create('Ext.data.Store', {
@@ -231,7 +253,7 @@ Ext.define('Base.grid.DynamicGrid', {
             });
 
             me.on("afterrender",function(){
-                me.store.removeAt(0);
+                //me.store.removeAt(0);
             });
             
 
@@ -241,7 +263,7 @@ Ext.define('Base.grid.DynamicGrid', {
             me.data = me.data[0]
             var reconfig = me._reconfig(me.data);
 
-            Ext.applyIf(me, {
+            Ext.apply(me, {
                 columns: reconfig.columns,
                 forceFit: true,
                 store: Ext.create('Ext.data.Store', {
@@ -251,12 +273,12 @@ Ext.define('Base.grid.DynamicGrid', {
             });
 
             me.on("afterrender",function(){
-                me.store.removeAt(0);
+                //me.store.removeAt(0);
             });
         }
         else {
 
-            Ext.applyIf(me, {
+            Ext.apply(me, {
                 columns: [],
                 forceFit: true,
                 store: Ext.create('Ext.data.Store', {
@@ -335,6 +357,7 @@ Ext.define('Base.grid.DynamicGrid', {
         var columns = [];
         var items   = [];
 
+        
         
 
         Ext.iterate(item,function(column,i){
