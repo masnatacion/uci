@@ -90,10 +90,7 @@ Ext.define('UCI.academic.kardex.GridPanel', {
 
 
 	                    	if(merge[0].f_grade4 > 0)
-	                    	{
-	                    		me.down("[dataIndex=p4]").show();
-	                    		me.down("[dataIndex=p4]").autoSize()
-	                    	}
+	                    		me.down("[dataIndex=p4]").show()
 
 	                    // Ext.each(materias,function(materia,index){
 	                    // 	Ext.applyIf(materias[index],calificaciones[index]);
@@ -180,8 +177,6 @@ var combo2 = Ext.create('Ext.form.ComboBox', {
 	                {
 	                    text    	: "Periodo",
 	                    dataIndex 	: "period",
-
-	                    editor: combo,
 	                    width		: 50,
 				        renderer: function(value,metaData,record) {
 				        	var row = record.raw;
@@ -203,7 +198,7 @@ var combo2 = Ext.create('Ext.form.ComboBox', {
 	                 },
 	                {
 	                    text    	: "P1",
-	                    width		: 40,
+	                    width		: 30,
 	                    dataIndex	: "p1",
 	                    editor: Ext.create('UCI.academic.field.Number'),
 				        renderer: function(value,metaData,record) {
@@ -214,7 +209,7 @@ var combo2 = Ext.create('Ext.form.ComboBox', {
 					{
 	                    text    	: "P2",
 	                    dataIndex	: "p2",
-	                    width		: 40,
+	                    width		: 30,
 	                    editor: Ext.create('UCI.academic.field.Number'),
 				        renderer: function(value,metaData,record) {
 				        	return me.ColumnCal(2,record,metaData);
@@ -223,7 +218,7 @@ var combo2 = Ext.create('Ext.form.ComboBox', {
 	                {
 	                    text    	: "P3",
 	                    dataIndex	: "p3",
-	                    width		: 40,
+	                    width		: 30,
 	                    editor: Ext.create('UCI.academic.field.Number'),
 				        renderer: function(value,metaData,record) {
 				        	return me.ColumnCal(3,record,metaData);
@@ -232,7 +227,7 @@ var combo2 = Ext.create('Ext.form.ComboBox', {
 	                {
 	                    text    	: "P4",
 	                    dataIndex	: "p4",
-	                    width		: 40,
+	                    width		: 30,
 	                    hidden		: true,
 	                    editor: Ext.create('UCI.academic.field.Number'),
 				        renderer: function(value,metaData,record) {
@@ -240,8 +235,8 @@ var combo2 = Ext.create('Ext.form.ComboBox', {
 				        }
 	                },
 	                {
-	                    text    	: "Cal. Final",
-	                    width		: 40,
+	                    text    	: "Final",
+	                    width		: 30,
 	                    dataIndex	: "avg",
 				        renderer: function(value,metaData,record) {
 				        	
@@ -282,13 +277,14 @@ var combo2 = Ext.create('Ext.form.ComboBox', {
 	                },
 					{
 					    xtype: 'actioncolumn',
-					    //text : "Historial",
-					    width: 30,
+					    dataIndex :'history',
+					    width: 20,
 					    items: [
 							{
 						        icon: './img/icons/clock.png',
 						        // Use a URL in the icon config
 						        tooltip: 'Historial',
+						        style : 'marging-right:1em',
 						        handler: function (grid, rowIndex, colIndex) {
 						            var record = me.getStore().getAt(rowIndex);
 					            	var history = Ext.create('UCI.academic.kardex.History',{ColumnCal: me.ColumnCal,childs:record.raw.childs});
@@ -299,9 +295,15 @@ var combo2 = Ext.create('Ext.form.ComboBox', {
 						            if(record.raw.childs == 0)
 						            	return 'x-hide-display';  //Hide the action icon
 						        }
-					    	},
+					    	}
+					    ]
+					},
+					{
+					    xtype: 'actioncolumn',
+					    width: 30,
+					    items: [
 							{
-						        icon: './img/icons/clock.png',
+						        icon: './img/icons/arrow-return-180-left.png',
 						        // Use a URL in the icon config
 						        tooltip: 'Extraordinario / Recurse',
 						        handler: function (grid, rowIndex, colIndex) {
