@@ -39,13 +39,26 @@
 		        grid = Ext.create('UCI.academic.kardex.GridPanel');
 
 				var search = Ext.create('Ext.form.field.Text',{
-					style : "margin-right:1em",
+					style : "margin-right:1em;width:100%",
 					emptyText:"¿Que estás buscando?",
 					enableKeyEvents : true,
 					listeners : {
 						'keyup' : function(_me){
+						    grid.store.clearFilter();
+						    grid.store.filter([
+                                {
+						            property: 'n_key',
+						            value   : _me.getValue(),
+						            anyMatch: true
+                                },
+                                /*
+                                {
+                                    property: 's_name',
+                                    value: _me.getValue(),
+                                    anyMatch: true
+                                }*/
 
-							console.log(_me)
+						    ]);
 						}
 					}
 				});
