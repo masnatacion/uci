@@ -4,6 +4,30 @@
 		"selected_items":
 		[
 			[
+				"load",
+				"loadData"
+			],
+			[
+				"lot",
+				"loadData"
+			],
+			[
+				"Ext",
+				"Extraordinario"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"get",
+				"getComponent"
+			],
+			[
+				"re",
+				"response"
+			],
+			[
 				"fu",
 				"function"
 			],
@@ -68,26 +92,27 @@
 	"buffers":
 	[
 		{
-			"file": "app/views/academic/kardex.blade.php",
+			"file": "app/routes.php",
 			"settings":
 			{
-				"buffer_size": 5366,
+				"buffer_size": 3848,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "public/js/uci/academic/Kardex.js",
+			"file": "app/views/settings/fechas/comandos.blade.php",
 			"settings":
 			{
-				"buffer_size": 2084,
-				"line_ending": "Unix"
+				"buffer_size": 1534,
+				"line_ending": "Unix",
+				"name": "comandos.blade.php"
 			}
 		},
 		{
-			"file": "public/js/base/grid/DynamicGrid.js",
+			"file": "app/views/academic/nuevo-alumno.blade.php",
 			"settings":
 			{
-				"buffer_size": 6849,
+				"buffer_size": 1537,
 				"line_ending": "Unix"
 			}
 		}
@@ -190,21 +215,71 @@
 	},
 	"expanded_folders":
 	[
+		"/Users/miguelmartinez/Sites/uci",
 		"/Users/miguelmartinez/Sites/uci/app",
+		"/Users/miguelmartinez/Sites/uci/app/views",
 		"/Users/miguelmartinez/Sites/uci/app/views/academic",
-		"/Users/miguelmartinez/Sites/uci/public",
-		"/Users/miguelmartinez/Sites/uci/public/js",
-		"/Users/miguelmartinez/Sites/uci/public/js/base",
+		"/Users/miguelmartinez/Sites/uci/app/views/settings",
+		"/Users/miguelmartinez/Sites/uci/app/views/settings/coordinador",
+		"/Users/miguelmartinez/Sites/uci/app/views/settings/fechas",
+		"/Users/miguelmartinez/Sites/uci/app/views/settings/profesor",
 		"/Users/miguelmartinez/Sites/uci/public/js/base/grid",
-		"/Users/miguelmartinez/Sites/uci/public/js/uci",
 		"/Users/miguelmartinez/Sites/uci/public/js/uci/academic",
-		"/Users/miguelmartinez/Sites/alquimia/js",
-		"/Users/miguelmartinez/Sites/alquimia/js/tvsa"
+		"/Users/miguelmartinez/Sites/uci/public/js/uci/academic/kardex",
+		"/Users/miguelmartinez/Sites/uci/public/js/uci/academic/missing",
+		"/Users/miguelmartinez/Sites/uci/public/js/uci/academic/reinscripcion"
 	],
 	"file_history":
 	[
-		"/Users/miguelmartinez/Sites/uci/public/js/uci/Kardex.js",
+		"/Users/miguelmartinez/Sites/uci/app/views/settings/profesor/materia.blade.php",
+		"/Users/miguelmartinez/Sites/uci/app/views/treasury/dashboard-topbar.blade.php",
+		"/Users/miguelmartinez/Sites/uci/app/views/treasury/dashboard.blade.php",
+		"/Users/miguelmartinez/Sites/uci/app/views/settings/profesor/extraordinario.blade.php",
+		"/Users/miguelmartinez/Sites/uci/app/views/layout.blade.php",
+		"/Users/miguelmartinez/Sites/uci/app/views/settings/coordinador/subproducto.blade.php",
+		"/Users/miguelmartinez/Sites/uci/app/views/settings/grid.blade.php",
+		"/Users/miguelmartinez/Sites/uci/app/views/grid.blade.php",
+		"/Users/miguelmartinez/Sites/uci/app/routes.php",
+		"/Users/miguelmartinez/Sites/uci/app/views/catalog/catalog.blade.php",
+		"/Users/miguelmartinez/Sites/uci/app/views/catalog/untitled",
+		"/Users/miguelmartinez/Sites/uci/public/js/uci/academic/missing/GridPanel.js",
+		"/Users/miguelmartinez/Sites/uci/app/views/academic/missing.blade.php",
+		"/Users/miguelmartinez/Sites/uci/public/js/base/grid/DynamicGrid.js",
+		"/Users/miguelmartinez/Sites/uci/public/GetMissingByGroup.json",
+		"/Users/miguelmartinez/Sites/uci/public/js/uci/academic/reinscripcion/Tree.js",
+		"/Users/miguelmartinez/Sites/uci/public/js/uci/academic/kardex/GridPanel.js",
+		"/Users/miguelmartinez/Sites/uci/stylus/extjs.styl",
+		"/Users/miguelmartinez/Sites/uci/public/js/base/window/WindowIframe.js",
+		"/Users/miguelmartinez/Sites/uci/public/js/base/window/WindowPDF.js",
+		"/Users/miguelmartinez/Sites/uci/app/views/academic/kardex.blade.php",
+		"/Users/miguelmartinez/Sites/uci/app/views/academic/reinscripcion.blade.php",
+		"/Users/miguelmartinez/Sites/uci/public/js/base/form/Combo.js",
+		"/Users/miguelmartinez/Sites/uci/public/js/base/data/Store.js",
+		"/Users/miguelmartinez/Sites/uci/public/js/base/data/reader/ComboReader.js",
+		"/Users/miguelmartinez/Sites/masnatacion_old/js/base/data/Store.js",
+		"/Users/miguelmartinez/Sites/uci/public/Grupo.json",
+		"/Users/miguelmartinez/Sites/uci/public/js/base/tree/TreePanel.js",
+		"/Users/miguelmartinez/Sites/alquimia/js/tvsa/Tree.js",
+		"/Users/miguelmartinez/Sites/uci/app/views/academic/untitled",
+		"/Users/miguelmartinez/Sites/uci/public/js/uci/academic/kardex/History.js",
+		"/Users/miguelmartinez/Sites/uci/public/js/uci/academic/field/Number.js",
+		"/Users/miguelmartinez/Sites/masnatacion/config.php",
+		"/Users/miguelmartinez/Sites/uci/public/GetSubjects.json",
+		"/Users/miguelmartinez/Sites/uci/public/js/base/grid/EditorGrid.js",
+		"/Users/miguelmartinez/Sites/uci/stylus/stylus.styl",
+		"/Users/miguelmartinez/Sites/uci/public/js/uci/academic/kardex/CambiarGrupo.js",
+		"/Users/miguelmartinez/Sites/uci/public/js/base/window/windowForm.js",
+		"/Users/miguelmartinez/Sites/uci/public/js/base/panel/FormPanel.js",
+		"/Users/miguelmartinez/Sites/uci/public/js/base/window/Window.js",
 		"/Users/miguelmartinez/Sites/uci/public/js/uci/academic/Kardex.js",
+		"/Users/miguelmartinez/Sites/uci/public/js/base/form/Panel.js",
+		"/Users/miguelmartinez/Sites/uci/public/js/base/WindowForm.js",
+		"/Users/miguelmartinez/Sites/uci/app/views/inscription.blade.php",
+		"/Users/miguelmartinez/Sites/uci/public/js/uci/academic/Inscription.js",
+		"/Users/miguelmartinez/Sites/uci/public/response.json",
+		"/Users/miguelmartinez/Sites/masnatacion_old/js/base/grid/GridPanel.js",
+		"/Users/miguelmartinez/Sites/uci/public/js/base/data/reader/DynamicReader.js",
+		"/Users/miguelmartinez/Sites/uci/public/js/uci/Kardex.js",
 		"/Users/miguelmartinez/Sites/groundbreaker/index.html",
 		"/Users/miguelmartinez/Sites/groundbreaker/stylus/home.styl",
 		"/Users/miguelmartinez/Sites/groundbreaker/stylus/footer.styl",
@@ -214,7 +289,6 @@
 		"/Users/miguelmartinez/Sites/groundbreaker/stylus/stylus.styl",
 		"/Users/miguelmartinez/Sites/groundbreaker/stylus/topbar.styl",
 		"/Users/miguelmartinez/Sites/groundbreaker/template/index.html",
-		"/Users/miguelmartinez/Sites/alquimia/js/tvsa/Tree.js",
 		"/Users/miguelmartinez/Sites/alquimia/app.js",
 		"/Users/miguelmartinez/Sites/alquimia/js/tvsa/Viewport.js",
 		"/Users/miguelmartinez/Sites/alquimia/js/tvsa/Panel.js",
@@ -226,22 +300,16 @@
 		"/Users/miguelmartinez/Sites/grid/js/base/data/reader/DynamicReader.js",
 		"/Users/miguelmartinez/Sites/grid/js/extjs/src/ux/grid/plugin/HeaderFilters.js",
 		"/Users/miguelmartinez/Sites/grid/js/base/grid/EditorGrid.js",
-		"/Users/miguelmartinez/Sites/uci/app/views/grid.blade.php",
-		"/Users/miguelmartinez/Sites/uci/app/routes.php",
-		"/Users/miguelmartinez/Sites/uci/app/views/treasury/dashboard-topbar.blade.php",
 		"/Users/miguelmartinez/Sites/uci/app/views/academic/cambiar-contrasena.blade.php",
 		"/Users/miguelmartinez/Sites/uci/app/views/academic/faltas.blade.php",
 		"/Users/miguelmartinez/Sites/uci/app/views/academic/administrar-beca.blade.php",
-		"/Users/miguelmartinez/Sites/uci/app/views/academic/kardex.blade.php",
 		"/Users/miguelmartinez/Sites/uci/app/views/academic/calificaciones.blade.php",
-		"/Users/miguelmartinez/Sites/uci/app/views/academic/reinscripcion.blade.php",
 		"/Users/miguelmartinez/Sites/uci/app/views/academic/inscripcion.blade.php",
 		"/Users/miguelmartinez/Sites/uci/app/views/academic/reactivar-alumno.blade.php",
 		"/Users/miguelmartinez/Sites/uci/app/views/academic/documentacion.blade.php",
 		"/Users/miguelmartinez/Sites/uci/app/views/academic/baja-de-alumno.blade.php",
 		"/Users/miguelmartinez/Sites/uci/app/views/academic/modificar-datos-personales.blade.php",
 		"/Users/miguelmartinez/Sites/uci/app/views/academic/nuevo-alumno.blade",
-		"/Users/miguelmartinez/Sites/uci/app/views/treasury/dashboard.blade.php",
 		"/Users/miguelmartinez/Sites/uci/app/views/treasury/cartera-vencida.blade.php",
 		"/Users/miguelmartinez/Sites/uci/app/views/treasury/actualizar-cuenta.blade.php",
 		"/Users/miguelmartinez/Sites/uci/app/views/treasury/cancelacion-transaccion.blade.php",
@@ -253,11 +321,9 @@
 		"/Users/miguelmartinez/Sites/uci/app/views/treasury/negociar-pago.blade.php",
 		"/Users/miguelmartinez/Sites/uci/app/views/password.blade.php",
 		"/Users/miguelmartinez/Sites/uci/app/views/treasury/treasury.blade.php",
-		"/Users/miguelmartinez/Sites/uci/app/views/layout.blade.php",
 		"/Users/miguelmartinez/Sites/uci/public/css/vendor/responsive-tables.css",
 		"/Users/miguelmartinez/Sites/uci/public/js/foundation/responsive-tables.js",
 		"/Users/miguelmartinez/Sites/uci/app/views/login-topbar.blade.php",
-		"/Users/miguelmartinez/Sites/uci/stylus/stylus.styl",
 		"/Users/miguelmartinez/Sites/uci/app/views/login.blade.php",
 		"/Users/miguelmartinez/Sites/uci/app/views/treasury/home.blade.php",
 		"/Users/miguelmartinez/Sites/uci/app/views/treasury/registro-pago.blade.php",
@@ -292,45 +358,7 @@
 		"/Users/miguelmartinez/Sites/masnatacion/stylus/main.styl",
 		"/Users/miguelmartinez/Sites/tokotu/dev.lms.startersway.com/node_modules/handlebars/node_modules/optimist/example/line_count_options.js",
 		"/Users/miguelmartinez/Sites/tokotu/dev.lms.startersway.com/node_modules/browserify/node_modules/JSONStream/LICENSE.APACHE2",
-		"/Users/miguelmartinez/Sites/tokotu/dev.lms.startersway.com/lms.sublime-project",
-		"/Users/miguelmartinez/Sites/tokotu/dev.lms.startersway.com/app/controllers/UsersController.php",
-		"/Users/miguelmartinez/Sites/tokotu/dev.lms.startersway.com/app/controllers/HomeController.php",
-		"/Users/miguelmartinez/Sites/tokotu/dev.lms.startersway.com/app/controllers/RegisterController.php",
-		"/Users/miguelmartinez/Sites/tokotu/dev.lms.startersway.com/app/views/home/home.blade.php",
-		"/Users/miguelmartinez/Sites/tokotu/dev.lms.startersway.com/app/views/topbar.blade.php",
-		"/Users/miguelmartinez/Sites/tokotu/dev.lms.startersway.com/app/config/local/app.php",
-		"/Users/miguelmartinez/Sites/masnatacion/application/views/header.php",
-		"/Users/miguelmartinez/Sites/masnatacion/application/views/footer.php",
-		"/Users/miguelmartinez/Sites/openenglish/dev.lms.startersway.com/httpdocs/.htaccess",
-		"/Users/miguelmartinez/Sites/masnatacion/stylus/event/event.styl",
-		"/Users/miguelmartinez/Sites/masnatacion/application/controllers/dondenadar.php",
-		"/Users/miguelmartinez/Sites/masnatacion/application/config/routes.php",
-		"/Users/miguelmartinez/Sites/masnatacion/application/views/home/menu-dondenadar.php",
-		"/Users/miguelmartinez/Sites/masnatacion/application/views/evento/evento.php",
-		"/Users/miguelmartinez/Sites/masnatacion/application/views/eventos/eventos.php",
-		"/Users/miguelmartinez/Sites/masnatacion/application/views/evento/elegir-participante.php",
-		"/Users/miguelmartinez/Sites/masnatacion/stylus/menu.styl",
-		"/Users/miguelmartinez/Sites/masnatacion/stylus/foundation.styl",
-		"/Users/miguelmartinez/Sites/masnatacion/stylus/events/events.styl",
-		"/Users/miguelmartinez/Sites/masnatacion/stylus/fonts.styl",
-		"/Users/miguelmartinez/Sites/masnatacion/application/controllers/evento.php",
-		"/Users/miguelmartinez/Sites/masnatacion/application/controllers/eventos.php",
-		"/Users/miguelmartinez/Sites/masnatacion/application/views/menu.php",
-		"/Users/miguelmartinez/Sites/masnatacion/application/views/home/menu-soynadador.php",
-		"/Users/miguelmartinez/Sites/masnatacion/application/views/videos/videos.php",
-		"/Users/miguelmartinez/Sites/masnatacion/application/views/dondenadar/untitled",
-		"/Users/miguelmartinez/Sites/masnatacion/application/views/video/video.php",
-		"/Users/miguelmartinez/Sites/masnatacion/application/controllers/video.php",
-		"/Users/miguelmartinez/Sites/masnatacion/application/views/lectura-deportiva/lectura-deportiva.php",
-		"/Users/miguelmartinez/Sites/masnatacion/application/views/home/menu-lecturadeportiva.php",
-		"/Users/miguelmartinez/Sites/masnatacion/application/views/home/menu-videos.php",
-		"/Users/miguelmartinez/Sites/masnatacion/application/controllers/lectura.php",
-		"/Users/miguelmartinez/Sites/masnatacion/application/views/lectura/lectura.php",
-		"/Users/miguelmartinez/Sites/masnatacion/application/controllers/lectura-deportiva.php",
-		"/Users/miguelmartinez/Sites/masnatacion/application/controllers/videos.php",
-		"/Users/miguelmartinez/Sites/masnatacion/application/views/evento/resultados.php",
-		"/Users/miguelmartinez/Sites/masnatacion/application/views/records/records.php",
-		"/Users/miguelmartinez/Sites/openenglish/dev.puroleads.com/httpdocs/config.php"
+		"/Users/miguelmartinez/Sites/tokotu/dev.lms.startersway.com/lms.sublime-project"
 	],
 	"find":
 	{
@@ -341,6 +369,7 @@
 		"height": 102.0,
 		"where_history":
 		[
+			"<open folders>,/Users/miguelmartinez/Sites/uci",
 			"<open folders>",
 			"<open folders>,/Users/miguelmartinez/Sites/kmg",
 			"<open folders>"
@@ -351,6 +380,46 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"Reportes",
+			"n_id_type",
+			"merge",
+			"n_id_level",
+			"sortByKey",
+			"reinscripcion",
+			"afterrender",
+			"10701",
+			"f_grade4",
+			"f_grade1",
+			"sortByKeyDesc",
+			"L-91181",
+			"ColumnCal",
+			"L-91181",
+			"f_grade1",
+			"L-91181",
+			"sortByKey",
+			"==",
+			"hist",
+			"his",
+			"window",
+			"_reconfig",
+			"console",
+			"removeColumn",
+			"plugins",
+			"getsele",
+			"ColumnCal",
+			"contextMenu",
+			"context",
+			"Ext.iterate",
+			"remove",
+			"url",
+			"me.url",
+			"add",
+			"agrega",
+			"filters",
+			"_onEliminar",
+			"onEliminar",
+			"elimi",
+			"columns",
 			"Ext.Ajax",
 			"span",
 			"span5",
@@ -438,47 +507,7 @@
 			"Recipients",
 			"s3_key",
 			"smtp",
-			"smtp_host",
-			"s3_key",
-			"smtp_host, smtp_port, smtp_ssl, smtp_username",
-			".breadcrumbs",
-			"background-color",
-			".breadcrumbs >",
-			".breadcrumbs > *:before",
-			"soy nadador",
-			"inscribe-now",
-			"smart",
-			"expand-event",
-			"h4",
-			"breadcrumbs",
-			"b5b5b5",
-			"icon-arrow-right",
-			"A8A8A8",
-			"first-level",
-			"4d4d4d",
-			"line_gray",
-			"LIGHT_GRAY",
-			"expand-menu",
-			"menu-title",
-			".accordion dd > a",
-			"7c7c7c",
-			"expand-menu",
-			"7c7c7c",
-			"b5b5b5",
-			".login",
-			".button.tiny",
-			"dd",
-			"A8A8A8",
-			";",
-			":",
-			"4288CA",
-			"dd",
-			"menu-profesores",
-			"icon-arrow-down",
-			"icon-arrow-right",
-			"first-level",
-			"soy nadador",
-			"menu"
+			"smtp_host"
 		],
 		"highlight": false,
 		"in_selection": false,
@@ -519,19 +548,19 @@
 			[
 				{
 					"buffer": 0,
-					"file": "app/views/academic/kardex.blade.php",
+					"file": "app/routes.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5366,
+						"buffer_size": 3848,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2353,
-								2344
+								1094,
+								1094
 							]
 						],
 						"settings":
@@ -539,8 +568,8 @@
 							"syntax": "Packages/PHP/PHP.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 3.0,
-						"translation.y": 1697.0,
+						"translation.x": 0.0,
+						"translation.y": 711.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -548,27 +577,28 @@
 				},
 				{
 					"buffer": 1,
-					"file": "public/js/uci/academic/Kardex.js",
+					"file": "app/views/settings/fechas/comandos.blade.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2084,
+						"buffer_size": 1534,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1989,
-								1989
+								1448,
+								1448
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+							"auto_name": "comandos.blade.php",
+							"syntax": "Packages/PHP/PHP.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 829.0,
+						"translation.y": 1014.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -576,29 +606,28 @@
 				},
 				{
 					"buffer": 2,
-					"file": "public/js/base/grid/DynamicGrid.js",
-					"semi_transient": false,
+					"file": "app/views/academic/nuevo-alumno.blade.php",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 6849,
+						"buffer_size": 1537,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3713,
-								3713
+								335,
+								197
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 508.0,
+						"translation.y": 57.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
@@ -876,7 +905,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 308.0,
+	"side_bar_width": 384.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

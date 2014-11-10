@@ -38,6 +38,16 @@
     <script src="{{ asset('js/vendor/modernizr.js') }}"></script>
     <script src="js/vendor/Chart.min.js"></script>
 
+    <link rel="stylesheet" href="js/extjs/src/ux/grid/feature/resources/MultiGroupingSummary.css">
+    <link rel="stylesheet" href="js/extjs/src/ux/grid/plugin/resources/GroupingPanel.css">
+    <link rel="stylesheet" href="js/extjs/resources/ext-theme-neptune/ext-theme-neptune-all.css">
+    <style>
+        .x-form-trigger-wrap {
+            margin-bottom: 0;
+        }
+    </style>
+    
+    <script src="js/extjs/ext-all-debug.js"></script>
 
 </head>
 <body>

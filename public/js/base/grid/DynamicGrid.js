@@ -189,8 +189,6 @@ Ext.define('Base.grid.DynamicGrid', {
         else
             me.urlQuery = me.url;
 
-
-
         if(me.deleteRow)
             me.columns.push(me.removeColumn());
 
@@ -279,7 +277,7 @@ Ext.define('Base.grid.DynamicGrid', {
         else {
 
             Ext.apply(me, {
-                columns: [],
+                //columns: me.columns || [],
                 forceFit: true,
                 store: Ext.create('Ext.data.Store', {
                     // Fields have to be set as empty array. Without this Ext will not create dynamic model.
@@ -318,12 +316,18 @@ Ext.define('Base.grid.DynamicGrid', {
 
 
 
+
         if(Ext.isArray(me.context))
         {
             me.contextMenu = Ext.create('Ext.menu.Menu', {
                  items: me.context
              });
         }
+        
+        me.store.on("datachanged", function () {
+
+           me.getSelectionModel().select(0)
+        })
 
         me.on("itemcontextmenu",function(view, record, item, index, e){
 

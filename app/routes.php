@@ -15,6 +15,51 @@ Route::get('/', function(){
 	return View::make('login');
 });
 
+Route::get('missing', function(){
+
+	return View::make('academic.missing');
+});
+
+Route::get('settings/coordinador/subproducto', function(){
+
+	return View::make('settings.coordinador.subproducto');
+});
+
+
+Route::get('settings/profesor/subproducto', function(){
+
+	return View::make('settings.coordinador.subproducto');
+});
+
+Route::get('settings/profesor/materia', function(){
+
+	return View::make('settings.profesor.materia');
+});
+
+
+Route::get('settings/profesor/extraordinario', function(){
+
+	return View::make('settings.profesor.materia');
+});
+
+Route::get('settings/fechas/comandos', function(){
+
+	return View::make('settings.fechas.comandos');
+});
+
+
+Route::get('missing', function(){
+
+	return View::make('academic.missing');
+});
+
+
+Route::get('missing', function(){
+
+	return View::make('academic.missing');
+});
+
+
 Route::get('dashboard', function(){
 
 	return View::make('treasury.dashboard');
@@ -24,6 +69,9 @@ Route::get('grid', function(){
 
 	return View::make('grid');
 });
+
+
+
 
 
 Route::get('registro-pago', function(){
@@ -153,7 +201,15 @@ Route::get('inscription', function(){
 	return View::make('inscription');
 });
 
+Route::get('reinscripcion', function(){
 
+	return View::make('academic.reinscripcion');
+});
+
+Route::get('catalog', function(){
+
+	return View::make('catalog.catalog');
+});
 
 /*
 Route::get('/', function()

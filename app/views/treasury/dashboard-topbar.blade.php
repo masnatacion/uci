@@ -46,10 +46,50 @@
               <li><a href="./calificaciones">Calificaciones</a></li>
               <li><a href="./faltas">Faltas</a></li>
               <li><a href="./administrar-beca">Administrar Beca</a></li>
-              <li><a href="./cambiar-contrasena">Cambiar Contraseña</a></li>
             </ul>
           </li>
-          <li><a href="./tareas">Catalog</a></li>
+          <li class="has-dropdown">
+            <a href="#">Settings</a>
+            <ul class="dropdown">
+              <li class="has-dropdown">
+                <a href="#">Coordinador</a>
+                <ul class="dropdown">
+                  <li><a href="./settings/coordinador/subproducto">SubProducto</a></li>
+                </ul>
+              </li>
+              <li class="has-dropdown">
+                <a href="#">Profesor</a>
+                <ul class="dropdown">
+                  <li><a href="./settings/profesor/subproducto">SubProducto</a></li>
+                  <li><a href="./settings/profesor/materia">Materia</a></li>
+                  <li><a href="./settings/profesor/extraordinario">Extraordinario</a></li>
+                </ul>
+              </li>
+              <li class="has-dropdown">
+                <a href="#">Ponderar</a>
+                <ul class="dropdown">
+                  <li><a href="./settings/ponderar/ordinario">Ordinario</a></li>
+                  <li><a href="./settings/ponderar/extraordinario">Extraordinario</a></li>
+                </ul>
+              </li>
+              <li class="has-dropdown">
+                <a href="#">Fechas</a>
+                <ul class="dropdown">
+                  <li><a href="./settings/fechas/comandos">Comandos</a></li>
+                  <li><a href="./settings/fechas/cuentas">Cuentas</a></li>
+                </ul>
+              </li>
+              <li><a href="./settings/configurar-precios">Configurar precios</a></li>
+              <li><a href="./settings/activar-periodo">Activar periodo</a></li>
+              
+              <li><a href="./settings/recibos-de-cuentas">Recibos de cuentas</a></li>
+              <li><a href="./settings/cuentas-modalidad">Cuentas modalidad</a></li>
+              <li><a href="./settings/prep-prof-docente">Prep Prof Docente</a></li>
+              <li><a href="./settings/precio-por-hora-clase">Precio por hora clase</a></li>
+            </ul>
+          </li>
+
+          <li><a href="./catalog">Catalog</a></li>
           <li><a href="./tareas">Tareas Prog.</a></li>
           <li><a href="./reinscripcion">Reinscripción</a></li>
           <li><a href="./reportes">Reportes</a></li>
@@ -88,7 +128,6 @@
 
 <ul id="dropdown-profile" class="f-dropdown" data-dropdown-content>
   <li><a href="#">Mi Perfil</a></li>
-  <li><a href="#">Settings</a></li>
   <li><a href="/" class="button alert">Salir</a>
 </li>
 </ul>

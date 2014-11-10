@@ -1,7 +1,11 @@
 .x-panel
+	table tr th, table tr td
+		padding 0
 	input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], textarea
 		margin 0
-
+	[class*="column"] + [class*="column"]:last-child {
+		float: none;
+	}
 
 .x-grid-row-editor
 	table
@@ -12,3 +16,5 @@
 			td,
 			th
 				padding 0
+
+

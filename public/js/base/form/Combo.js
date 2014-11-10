@@ -14,11 +14,26 @@ Ext.define('Base.form.Combo', {
 	    queryMode		: 'local',
 	    allowBlank		: false,  // requires a non-empty value
 	    forceSelection 	: true,
-            load                : true,
+        load                : true,
 	    typeAhead		: true,
 	    //pageSize		: 10,
 	    minChars		: 1,
 	    autoLoad		: false,
+
+	    _loadData : function(url){
+	    	var me = this;
+
+	        Ext.Ajax.request({
+	            url: url,
+	            success: function(response){
+	                var response = response.responseText;
+	                var json = Ext.decode(response);
+
+	                me.store.loadData(json);
+
+	            }
+	        });
+	    },
 
 		initComponent: function() {
 
@@ -59,12 +74,12 @@ Ext.define('Base.form.Combo', {
 				Ext.apply(this,tpl);
 			}
 
-			this.store=Ext.create('Base.data.Store',data);
-                        
-                        if(me.$autoLoad)
-                                this.store.load();    
+			me.store = Ext.create('Base.data.Store',data);
+            
+
+			me._loadData(me.url);
 			
-			Base.form.Combo.superclass.initComponent.apply(this,arguments);	
+			me.callParent(arguments);
 
 
 	        this.on({

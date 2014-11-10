@@ -1,7 +1,7 @@
 @extends("layout")
 
 @section('topbar')
-	@extends("treasury.dashboard-topbar")
+  @extends("treasury.dashboard-topbar")
 @stop
 
 @section('content')

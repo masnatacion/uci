@@ -35,11 +35,9 @@
 		    launch: function() {
 		        var me = this;
 
-
-		        combo = Ext.create('Base.form.Combo',{
-		        	renderTo :'combo',
-		        	fields	 : ['n_id', 's_group'],
-		        	url 	 : './Grupo.json'
+//UpdateMissings(int student, int subprod, int course, int subjectkey,int? p1, int? p2, int? p3, int? p4)
+		        var grid = Ext.create('UCI.academic.missing.GridPanel',{
+		        	renderTo: Ext.getBody()
 		        });
 
 		        
