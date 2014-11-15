@@ -18,15 +18,7 @@
 <section>
     <!-- App Files -->
     <script type="text/javascript">
-		Ext.Loader.setConfig({
-		    enabled			: true,
-		    disableCaching	: true,
-		    paths  : {
-		      UCI   : "./js/uci/",
-		      Base  : "./js/base/",
-		      Ext   : "./js/extjs/src/"
-		   }
-		});
+
 
 		Ext.application({
 		    name        : 'UCI',

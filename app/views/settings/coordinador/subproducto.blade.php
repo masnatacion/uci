@@ -1,9 +1,10 @@
 @extends('treasury.dashboard')
 
 @section('content')
-<section class="content2">
 
-	<h3>Subproduct</h3>
+<h3>Coordinador Subproducto</h3>
+
+<section class="content">
 
 	<div class="row">
 	    <div class="large-12 columns">

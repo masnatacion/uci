@@ -22,6 +22,25 @@ Ext.define('Base.grid.DynamicGrid', {
     plugins : [],
     context : null,
 
+    loadData: function (URL) {
+
+        var me = this;
+
+        Ext.Ajax.request({
+            url: URL,
+            success: function (file) {
+                var merge = Ext.decode(file.responseText);
+
+                var reconfig = me._reconfig({ columns: me.columns, data: merge });
+    
+                me.store.model.setFields(reconfig.fields);
+
+                me.store.loadData(merge);
+
+            }
+        });
+
+    },
     getSelection: function (){
         return this.getSelectionModel().getSelection();
     },
@@ -31,9 +50,9 @@ Ext.define('Base.grid.DynamicGrid', {
         var me = this;
         return {
             xtype: 'actioncolumn',
-            width: 50,
+            width: 20,
             items: [{
-                icon: 'js/extjs/src/ux/grid/plugin/resources/images/grid-grouping/delete.png',
+                icon: '/Scripts/extjs/src/ux/grid/plugin/resources/images/grid-grouping/delete.png',
                 // Use a URL in the icon config
                 tooltip: 'Eliminar',
                 handler: function (grid, rowIndex, colIndex) {
@@ -182,12 +201,29 @@ Ext.define('Base.grid.DynamicGrid', {
     initComponent: function() {
         
         var me = this;
+
+
+        Ext.apply(Ext.form.field.VTypes, {
+            score: function (val, field) {
+                if (val == -1) {
+                    field.setValue("");
+                }
+                return true;
+            },
+
+            scoreText: ''
+        });
+
+
+
         var recordQuery = me.findEventURL("query");
         
         if(recordQuery)
             me.urlQuery = recordQuery.query;
         else
             me.urlQuery = me.url;
+
+
 
         if(me.deleteRow)
             me.columns.push(me.removeColumn());
@@ -221,6 +257,7 @@ Ext.define('Base.grid.DynamicGrid', {
 
             var reconfig = me._reconfig(me.data);
 
+            console.log(reconfig.columns)
             Ext.apply(me, {
                 columns: reconfig.columns,
                 forceFit: true,
@@ -395,6 +432,10 @@ Ext.define('Base.grid.DynamicGrid', {
 
 
                 fields.push({name: column, type: 'textfield'});
+
+                if(me.editor)
+                    var editor = _editor;
+                
                 columns.push({text: column, dataIndex: column,editor : editor});
             }
 

@@ -48,6 +48,18 @@
     </style>
     
     <script src="js/extjs/ext-all-debug.js"></script>
+    
+    <script>
+        Ext.Loader.setConfig({
+            enabled         : true,
+            disableCaching  : true,
+            paths  : {
+              UCI   : "./js/uci/",
+              Base  : "./js/base/",
+              Ext   : "./js/extjs/src/"
+           }
+        });
+    </script>
 
 </head>
 <body>
